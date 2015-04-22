@@ -10,73 +10,186 @@ namespace hiqdev\collection;
 /**
  * Basic Collection Component
  */
-class Collection extends \yii\base\Collection
+class Collection extends \yii\base\Component
 {
     /**
-     * @var array list of items with their configuration in format: 'itemId' => [...]
+     * @var string default class to create item objects
      */
-    private $_items = [];
+    public $itemClass;
 
     /**
-     * Multi set
-     * @param array $items list of items
+     * @var array list of items with their configuration in format: 'name' => [...]
      */
-    public function mset (array $items)
+    protected $_items = [];
+
+    /**
+     * Set them all!
+     * @param array $items list of items
+     * @return $this for chaining
+     */
+    public function setItems (array $items)
     {
-        $this->_items = $items;
+        foreach ($items as $k => $v) $this->_items[$k] = $v;
+        return $this;
     }
 
     /**
-     * Multi get
+     * Get them all!
      * @return array list of items
      */
-    public function mget ()
+    public function getItems ()
     {
         $items = [];
-        foreach ($this->_items as $id => $item) {
-            $items[$id] = $this->get($id);
+        foreach ($this->_items as $name => $item) {
+            $items[$name] = $this->get($name);
         }
 
         return $items;
     }
 
     /**
-     * @param string $id service id.
+     * Sets an item.
+     * @return $this for chaining
+     */
+    public function set ($name, $config = [])
+    {
+        $this->_items[$name] = $config;
+        return $this;
+    }
+
+    /**
+     * @param string $name item name.
      * @return object item instance.
      * @throws InvalidParamException on non existing item request.
      */
-    public function get ($id)
+    public function get ($name)
     {
-        if (!$this->has($id)) {
-            throw new InvalidParamException("Unknown item '{$id}'.");
+        if (!$this->has($name)) {
+            throw new InvalidParamException("Unknown item '{$name}'.");
         };
-        if (!is_object($this->_items[$id])) {
-            $this->_items[$id] = $this->create($id, $this->_items[$id]);
+        if (!is_object($this->_items[$name])) {
+            $this->_items[$name] = $this->create($name, $this->_items[$name]);
         };
 
-        return $this->_items[$id];
+        return $this->_items[$name];
     }
 
     /**
      * Checks if item exists in the hub.
-     * @param string $id item id.
+     * @param string $name item name.
      * @return boolean whether item exist.
      */
-    public function has ($id)
+    public function has ($name)
     {
-        return array_key_exists($id, $this->_items);
+        return array_key_exists($name, $this->_items);
     }
 
     /**
      * Creates item instance from its array configuration.
-     * @param string $id item id.
+     * @param string $name item name.
      * @param array $config item instance configuration.
-     * @return MenuInterface item instance.
+     * @return item instance.
      */
-    protected function create ($id, $config)
+    protected function create ($name, array $config = [])
     {
-        $config['id'] = $id;
+        return Yii::createObject(array_merge([
+            'name'          => $name,
+            'class'         => $this->itemClass,
+            'collection'    => $this,
+        ], $config));
+    }
 
-        return Yii::createObject($config);
+    /**
+     * Getter magic method.
+     * This method is overridden to support accessing components like reading properties.
+     * @param string $name component or property name
+     * @return mixed item of found or the named property value
+     */
+    public function __get ($name)
+    {
+        if ($this->has($name)) {
+            return $this->get($name);
+        } else {
+            return parent::__get($name);
+        }
+    }
+
+    /**
+     * Checks if a property value is null.
+     * This method overrides the parent implementation by checking if the named item is loaded.
+     * @param string $name the property name or the event name
+     * @return boolean whether the property value is null
+     */
+    public function __isset ($name)
+    {
+        return isset($this->_items[$name]) || parent::__isset($name);
+    }
+
+    /**
+     * Delete an item.
+     * @return $this for chaining
+     */
+    public function delete ($name)
+    {
+        unset($this->_items[$name]);
+        return $this;
+    }
+
+    /**
+     * Adds an item. Silently resets if already exists.
+     * @param string|array $where can be 'first', 'last' or array like ['before' => 'd','after'=>['a','b']]
+     * @return $this for chaining
+     */
+    public function add ($name, $config = [], $where = 'last')
+    {
+        if ($where === 'last' || $this->has($name)) return $this->set($name,$config);
+        if ($where === 'first') {
+            $this->_items = array_merge([$name => $config],$this->_items);
+        } else {
+            $this->_items = $this->maddInside([$name => $config],$where);
+        };
+        return $this;
+    }
+
+    public function madd (array $items, $where = 'last')
+    {
+        if ($where === 'last') return $this->setItems($items);
+        foreach ($items as $k=>$v) $this->delete($k);
+        if ($where === 'first') {
+            $this->_items = array_merge([$name => $config],$this->_items);
+        } else {
+            $this->_items = $this->maddInside($items,$where);
+        };
+        return $this;
+    }
+
+    protected static function maddInside ($items, $where)
+    {
+        $before = static::prepareWhereList($where['before']);
+        $after  = static::prepareWhereList($where['after']);
+        $new    = [];
+        $found  = false;
+        foreach ($this->_items as $k => $v) {
+            if (!$found && $before[$k]) {
+                foreach ($items as $i=>$c) $new[$i] = $c;
+                $found = true;
+            };
+            $new[$k] = $v;
+            if (!$found && $after[$k]) {
+                foreach ($items as $i=>$c) $new[$i] = $c;
+                $found = true;
+            };
+        };
+        return $new;
+    }
+
+    protected static function prepareWhereList ($list)
+    {
+        if (is_array($list)) {
+            foreach ($list as $v) $res[$v] = 1;
+        } else {
+            $res[$list] = 1;
+        };
+        return $res;
     }
 }
