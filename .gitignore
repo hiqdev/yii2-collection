@@ -12,6 +12,9 @@ composer.lock
 phpunit.phar
 /phpunit.xml
 
+# vim swap files
+.*.swp
+
 # IDE project files
 .idea
 nbproject
@@ -25,3 +28,5 @@ Thumbs.db
 # Mac DS_Store Files
 .DS_Store
 
+
+tests/_output/*

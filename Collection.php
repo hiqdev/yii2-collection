@@ -15,7 +15,7 @@ class Collection extends \yii\base\Component
     /**
      * @var string default class to create item objects
      */
-    public $itemClass;
+    public $itemClass = 'hiqdev\collection\Collection';
 
     /**
      * @var array list of items with their configuration in format: 'name' => [...]
