@@ -20,3 +20,6 @@ runtest:
 	codecept run --no-interaction
 
 test: install buildtest runtest
+
+clean:
+	rm -rf vendor composer.lock tests/unit/UnitTester.php
