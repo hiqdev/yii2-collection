@@ -14,10 +14,10 @@ install:
 	composer install --prefer-dist --no-interaction
 
 buildtest:
-	codecept build --no-interaction
+	./vendor/bin/codecept build --no-interaction
 
 runtest:
-	codecept run --no-interaction
+	./vendor/bin/codecept run --no-interaction
 
 test: install buildtest runtest
 
