@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link    http://hiqdev.com/yii2-collection
  * @license http://hiqdev.com/yii2-collection/license
@@ -8,7 +9,7 @@
 namespace hiqdev\collection;
 
 /**
- * Basic Manager Component
+ * Basic Manager Component.
  */
 class Manager extends Component
 {

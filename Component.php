@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link    http://hiqdev.com/yii2-collection
  * @license http://hiqdev.com/yii2-collection/license
@@ -7,10 +8,8 @@
 
 namespace hiqdev\collection;
 
-use Yii;
-
 /**
- * Collection Component
+ * Collection Component.
  */
 class Component extends \yii\base\Component
 {
