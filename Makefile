@@ -1,4 +1,8 @@
-hello:
+# @link    http://hiqdev.com/yii2-collection
+# @license http://hiqdev.com/yii2-collection/license
+# @copyright Copyright (c) 2015 HiQDev
+
+help:
 	@echo Usage:
 	@echo - make test - To install and run tests
 	@echo - make checks - To run checks
