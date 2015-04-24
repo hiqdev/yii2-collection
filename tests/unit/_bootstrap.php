@@ -1,2 +1,9 @@
 <?php
-// Here you can initialize variables that will be available to your tests
+
+/**
+ * @link    http://hiqdev.com/yii2-collection
+ * @license http://hiqdev.com/yii2-collection/license
+ * @copyright Copyright (c) 2015 HiQDev
+ */
+
+/// Here you can initialize variables that will be available to your tests
