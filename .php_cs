@@ -1,22 +1,24 @@
 <?php
 
 $header = <<<EOF
-@link    http://hiqdev.com/yii2-collection
-@license http://hiqdev.com/yii2-collection/license
+@package   yii2-collection
+@link      http://hiqdev.com/yii2-collection
+@license   http://hiqdev.com/yii2-collection/license
 @copyright Copyright (c) 2015 HiQDev
 EOF;
 
-Symfony\CS\Fixer\Contrib\HeaderCommentFixer::setHeader($header);
+Symfony\CS\Fixer\Contrib\HeaderPhpdocFixer::setHeader($header);
 
 return Symfony\CS\Config\Config::create()
     // use default SYMFONY_LEVEL and extra fixers:
+    //->level(Symfony\CS\FixerInterface::PSR2_LEVEL)
     ->fixers(array(
-        'header_comment',                   /// Add, replace or remove header comment.
+        'header_phpdoc',                    /// Add, replace or remove header phpdoc.
         'align_double_arrow',               /// Align double arrow symbols in consecutive lines.
         'align_equals',                     /// Align equals symbols in consecutive lines.
         'concat_with_spaces',               /// Concatenation should be used with at least one whitespace around.
         'ereg_to_preg',                     /// Replace deprecated ereg regular expression functions with preg. Warning! This could change code behavior.
-        'long_array_syntax',                /// Arrays should use the long syntax.
+/// NO  'long_array_syntax',                /// Arrays should use the long syntax.
         'multiline_spaces_before_semicolon',/// Multi-line whitespace before closing semicolon are prohibited.
         'newline_after_open_tag',           /// Ensure there is no code on the same line as the PHP open tag.
         'no_blank_lines_before_namespace',  /// There should be no blank lines before a namespace declaration.
