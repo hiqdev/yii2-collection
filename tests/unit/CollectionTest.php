@@ -5,14 +5,16 @@
  * @copyright Copyright (c) 2015 HiQDev
  */
 
-namespace hiqdev\collection\tests;
+namespace hiqdev\collection\tests\unit;
 
-use hiqdev\collection\Collection;
+use Yii;
 
 /**
  */
 class CollectionTest extends \yii\codeception\TestCase
 {
+    public $appConfig = "@hiqdev/collection/tests/appConfig.php";
+
     /**
      * @var NewCollection
      */
@@ -20,7 +22,7 @@ class CollectionTest extends \yii\codeception\TestCase
 
     protected function setUp ()
     {
-        parent::setUp();
+        //parent::setUp();
         $this->sample = Yii::createObject([
             'class' => NewCollection::className(),
             'items' => [
@@ -40,19 +42,27 @@ class CollectionTest extends \yii\codeception\TestCase
 
     protected function tearDown ()
     {
-        parent::tearDown();
+        //parent::tearDown();
         $this->sample = null;
     }
 
-    public function testConstruct ()
+    public function testGetAndKeys ()
     {
-die(var_dump($this->sample));
-        $this->assertTrue($this->sample->hasProperty('Text'));
-        $this->assertTrue($this->sample->hasProperty('text'));
-        $this->assertFalse($this->sample->hasProperty('Caption'));
-        $this->assertTrue($this->sample->hasProperty('content'));
-        $this->assertFalse($this->sample->hasProperty('content', false));
-        $this->assertFalse($this->sample->hasProperty('Content'));
+        $this->assertTrue($this->sample->has('main'));
+        $this->assertFalse($this->sample->has('other'));
+        $this->assertTrue($this->sample->sidebar->has('header'));
+        $this->assertEquals(implode(',',$this->sample->keys()),'main,sidebar,breadcrumbs');
+    }
+
+    public function testSetAndDelete ()
+    {
+        $this->sample->set('new',[
+            'label'   => 'new navigation',
+            'options' => ['class' => 'header'],
+        ]);
+        $this->assertTrue($this->sample->has('new'));
+        $this->sample->delete('new');
+        $this->assertFalse($this->sample->has('new'));
     }
 
 /*
@@ -166,9 +176,9 @@ die(var_dump($this->sample));
 */
 }
 
-
-class NewCollection extends Collection
+class NewCollection extends \hiqdev\collection\Object
 {
+    public $url;
     public $label;
     public $options;
 }

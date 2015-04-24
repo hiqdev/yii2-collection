@@ -7,10 +7,12 @@
 
 namespace hiqdev\collection;
 
+use Yii;
+
 /**
- * Basic Manager Component
+ * Collection Object
  */
-class Manager extends Component
+class Object extends \yii\base\Object
 {
-    /// XXX management features going to be here later
+    use CollectionTrait;
 }

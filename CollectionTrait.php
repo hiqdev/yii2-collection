@@ -7,15 +7,17 @@
 
 namespace hiqdev\collection;
 
+use Yii;
+
 /**
- * Basic Collection Component
+ * Collection Trait
  */
-class Collection extends \yii\base\Component
+trait CollectionTrait
 {
     /**
      * @var string default class to create item objects
      */
-    public $itemClass = 'hiqdev\collection\Collection';
+    public $itemClass;
 
     /**
      * @var array list of items with their configuration in format: 'name' => [...]
@@ -93,9 +95,9 @@ class Collection extends \yii\base\Component
     protected function create ($name, array $config = [])
     {
         return Yii::createObject(array_merge([
-            'name'          => $name,
-            'class'         => $this->itemClass,
-            'collection'    => $this,
+            'class'         => $this->itemClass ?: static::className(),
+            //'name'          => $name,
+            //'collection'    => $this,
         ], $config));
     }
 
@@ -133,6 +135,15 @@ class Collection extends \yii\base\Component
     {
         unset($this->_items[$name]);
         return $this;
+    }
+
+    /**
+     * Get keys
+     * @return $this for chaining
+     */
+    public function keys ()
+    {
+        return array_keys($this->_items);
     }
 
     /**
