@@ -29,8 +29,8 @@ cache:
     - $HOME/.composer/cache
 
 install:
-  - make install buildtest
+  - make install
 
 script:
-  - make runtest
+  - make checks
 
