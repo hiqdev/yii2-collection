@@ -8,9 +8,10 @@
 composer.phar
 composer.lock
 
-# phpunit itself and local config
+# testing facilities
 phpunit.phar
 /phpunit.xml
+tests/unit/UnitTester.php
 
 # vim swap files
 .*.swp
