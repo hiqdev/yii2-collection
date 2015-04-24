@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link    http://hiqdev.com/yii2-collection
  * @license http://hiqdev.com/yii2-collection/license
@@ -10,7 +11,7 @@ namespace hiqdev\collection;
 use Yii;
 
 /**
- * Collection Trait
+ * Collection Trait.
  */
 trait CollectionTrait
 {
@@ -26,20 +27,26 @@ trait CollectionTrait
 
     /**
      * Set them all!
+     *
      * @param array $items list of items
+     *
      * @return $this for chaining
      */
-    public function setItems (array $items)
+    public function setItems(array $items)
     {
-        foreach ($items as $k => $v) $this->_items[$k] = $v;
+        foreach ($items as $k => $v) {
+            $this->_items[$k] = $v;
+        }
+
         return $this;
     }
 
     /**
      * Get them all!
+     *
      * @return array list of items
      */
-    public function getItems ()
+    public function getItems()
     {
         $items = [];
         foreach ($this->_items as $name => $item) {
@@ -50,21 +57,25 @@ trait CollectionTrait
     }
 
     /**
-     * Sets an item.
+     * Set an item.
+     *
      * @return $this for chaining
      */
-    public function set ($name, $config = [])
+    public function set($name, $config = [])
     {
         $this->_items[$name] = $config;
+
         return $this;
     }
 
     /**
      * @param string $name item name.
-     * @return object item instance.
+     *
      * @throws InvalidParamException on non existing item request.
+     *
+     * @return object item instance.
      */
-    public function get ($name)
+    public function get($name)
     {
         if (!$this->has($name)) {
             throw new InvalidParamException("Unknown item '{$name}'.");
@@ -77,22 +88,26 @@ trait CollectionTrait
     }
 
     /**
-     * Checks if item exists in the hub.
+     * Check collection has the item.
+     *
      * @param string $name item name.
-     * @return boolean whether item exist.
+     *
+     * @return bool whether item exist.
      */
-    public function has ($name)
+    public function has($name)
     {
         return array_key_exists($name, $this->_items);
     }
 
     /**
-     * Creates item instance from its array configuration.
-     * @param string $name item name.
-     * @param array $config item instance configuration.
+     * Creates item instance from array configuration.
+     *
+     * @param string $name   item name.
+     * @param array  $config item instance configuration.
+     *
      * @return item instance.
      */
-    protected function create ($name, array $config = [])
+    protected function create($name, array $config = [])
     {
         return Yii::createObject(array_merge([
             'class'         => $this->itemClass ?: static::className(),
@@ -104,10 +119,12 @@ trait CollectionTrait
     /**
      * Getter magic method.
      * This method is overridden to support accessing components like reading properties.
+     *
      * @param string $name component or property name
+     *
      * @return mixed item of found or the named property value
      */
-    public function __get ($name)
+    public function __get($name)
     {
         if ($this->has($name)) {
             return $this->get($name);
@@ -119,62 +136,87 @@ trait CollectionTrait
     /**
      * Checks if a property value is null.
      * This method overrides the parent implementation by checking if the named item is loaded.
+     *
      * @param string $name the property name or the event name
-     * @return boolean whether the property value is null
+     *
+     * @return bool whether the property value is null
      */
-    public function __isset ($name)
+    public function __isset($name)
     {
         return isset($this->_items[$name]) || parent::__isset($name);
     }
 
     /**
      * Delete an item.
+     *
      * @return $this for chaining
      */
-    public function delete ($name)
+    public function delete($name)
     {
         unset($this->_items[$name]);
+
         return $this;
     }
 
     /**
-     * Get keys
+     * Get keys.
+     *
      * @return $this for chaining
      */
-    public function keys ()
+    public function keys()
     {
         return array_keys($this->_items);
     }
 
     /**
      * Adds an item. Silently resets if already exists.
-     * @param string|array $where can be 'first', 'last' or array like ['before' => 'd','after'=>['a','b']]
+     *
+     * @param string       $name   item name.
+     * @param array        $config item instance configuration.
+     * @param string|array $where  can be 'first', 'last' or array like ['before' => 'd','after' => ['a','b']]
+     *
      * @return $this for chaining
      */
-    public function add ($name, $config = [], $where = 'last')
+    public function add($name, $config = [], $where = 'last')
     {
-        if ($where === 'last' || $this->has($name)) return $this->set($name,$config);
+        if ($where === 'last' || $this->has($name)) {
+            return $this->set($name, $config);
+        }
         if ($where === 'first') {
-            $this->_items = array_merge([$name => $config],$this->_items);
+            $this->_items = array_merge([$name => $config], $this->_items);
         } else {
-            $this->_items = $this->maddInside([$name => $config],$where);
-        };
+            $this->_items = $this->insertInside([$name => $config], $where);
+        }
+
         return $this;
     }
 
-    public function madd (array $items, $where = 'last')
+    /**
+     * Add array of items. Silently resets if already exists.
+     *
+     * @param array        $items item instance configuration.
+     * @param string|array $where can be 'first', 'last' or array like ['before' => 'd','after' => ['a','b']]
+     *
+     * @return $this for chaining
+     */
+    public function addItems(array $items, $where = 'last')
     {
-        if ($where === 'last') return $this->setItems($items);
-        foreach ($items as $k=>$v) $this->delete($k);
+        if ($where === 'last') {
+            return $this->setItems($items);
+        }
+        foreach ($items as $k => $v) {
+            $this->delete($k);
+        }
         if ($where === 'first') {
-            $this->_items = array_merge([$name => $config],$this->_items);
+            $this->_items = array_merge($items, $this->_items);
         } else {
-            $this->_items = $this->maddInside($items,$where);
-        };
+            $this->_items = $this->insertInside($items, $where);
+        }
+
         return $this;
     }
 
-    protected static function maddInside ($items, $where)
+    protected static function insertInside($items, $where)
     {
         $before = static::prepareWhereList($where['before']);
         $after  = static::prepareWhereList($where['after']);
@@ -182,25 +224,33 @@ trait CollectionTrait
         $found  = false;
         foreach ($this->_items as $k => $v) {
             if (!$found && $before[$k]) {
-                foreach ($items as $i=>$c) $new[$i] = $c;
+                foreach ($items as $i => $c) {
+                    $new[$i] = $c;
+                }
                 $found = true;
             };
             $new[$k] = $v;
             if (!$found && $after[$k]) {
-                foreach ($items as $i=>$c) $new[$i] = $c;
+                foreach ($items as $i => $c) {
+                    $new[$i] = $c;
+                }
                 $found = true;
             };
         };
+
         return $new;
     }
 
-    protected static function prepareWhereList ($list)
+    protected static function prepareWhereList($list)
     {
         if (is_array($list)) {
-            foreach ($list as $v) $res[$v] = 1;
+            foreach ($list as $v) {
+                $res[$v] = 1;
+            }
         } else {
             $res[$list] = 1;
-        };
+        }
+
         return $res;
     }
 }
