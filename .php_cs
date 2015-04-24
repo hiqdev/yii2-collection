@@ -15,13 +15,19 @@ return Symfony\CS\Config\Config::create()
     ->fixers(array(
         'header_comment',
         'long_array_syntax',
+        'align_double_arrow',
+        'align_equals',
+        'concat_with_spaces',
+        'multiline_spaces_before_semicolon',
+        'newline_after_open_tag',
+        'php4_constructor',
+        'phpdoc_order',
         'ordered_use',
         'strict',
         'strict_param',
     ))
     ->finder(
         Symfony\CS\Finder\DefaultFinder::create()
-            ->exclude('Symfony/CS/Tests/Fixtures')
             ->in(__DIR__)
     )
 ;
