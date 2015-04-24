@@ -1,11 +1,10 @@
 <?php
-
 /**
- * @link    http://hiqdev.com/yii2-collection
- * @license http://hiqdev.com/yii2-collection/license
+ * @package   yii2-collection
+ * @link      http://hiqdev.com/yii2-collection
+ * @license   http://hiqdev.com/yii2-collection/license
  * @copyright Copyright (c) 2015 HiQDev
  */
-
 namespace hiqdev\collection\tests\unit;
 
 use Yii;
@@ -27,8 +26,8 @@ class CollectionTest extends \yii\codeception\TestCase
         $this->sample = Yii::createObject([
             'class' => NewCollection::className(),
             'items' => [
-                'main'        => [],
-                'sidebar'     => [
+                'main'    => [],
+                'sidebar' => [
                     'items' => [
                         'header' => [
                             'label'   => 'MAIN NAVIGATION',

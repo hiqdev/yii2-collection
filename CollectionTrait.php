@@ -1,11 +1,10 @@
 <?php
-
 /**
- * @link    http://hiqdev.com/yii2-collection
- * @license http://hiqdev.com/yii2-collection/license
+ * @package   yii2-collection
+ * @link      http://hiqdev.com/yii2-collection
+ * @license   http://hiqdev.com/yii2-collection/license
  * @copyright Copyright (c) 2015 HiQDev
  */
-
 namespace hiqdev\collection;
 
 use Yii;
@@ -110,7 +109,7 @@ trait CollectionTrait
     protected function create($name, array $config = [])
     {
         return Yii::createObject(array_merge([
-            'class'         => $this->itemClass ?: static::className(),
+            'class' => $this->itemClass ?: static::className(),
             //'name'          => $name,
             //'collection'    => $this,
         ], $config));
