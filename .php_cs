@@ -7,13 +7,14 @@ $header = <<<EOF
 @copyright Copyright (c) 2015 HiQDev
 EOF;
 
-Symfony\CS\Fixer\Contrib\HeaderPhpdocFixer::setHeader($header);
+Symfony\CS\Fixer\Contrib\HeaderCommentFixer::setPhpdoc(true);
+Symfony\CS\Fixer\Contrib\HeaderCommentFixer::setHeader($header);
 
 return Symfony\CS\Config\Config::create()
     // use default SYMFONY_LEVEL and extra fixers:
     //->level(Symfony\CS\FixerInterface::PSR2_LEVEL)
     ->fixers(array(
-        'header_phpdoc',                    /// Add, replace or remove header phpdoc.
+        'header_comment',                   /// Add, replace or remove header comment.
         'align_double_arrow',               /// Align double arrow symbols in consecutive lines.
         'align_equals',                     /// Align equals symbols in consecutive lines.
         'concat_with_spaces',               /// Concatenation should be used with at least one whitespace around.
