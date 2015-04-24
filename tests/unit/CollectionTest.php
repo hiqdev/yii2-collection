@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link    http://hiqdev.com/yii2-collection
  * @license http://hiqdev.com/yii2-collection/license
@@ -13,14 +14,14 @@ use Yii;
  */
 class CollectionTest extends \yii\codeception\TestCase
 {
-    public $appConfig = "@hiqdev/collection/tests/appConfig.php";
+    public $appConfig = '@hiqdev/collection/tests/appConfig.php';
 
     /**
      * @var NewCollection
      */
     protected $sample;
 
-    protected function setUp ()
+    protected function setUp()
     {
         //parent::setUp();
         $this->sample = Yii::createObject([
@@ -40,23 +41,23 @@ class CollectionTest extends \yii\codeception\TestCase
         ]);
     }
 
-    protected function tearDown ()
+    protected function tearDown()
     {
         //parent::tearDown();
         $this->sample = null;
     }
 
-    public function testGetAndKeys ()
+    public function testGetAndKeys()
     {
         $this->assertTrue($this->sample->has('main'));
         $this->assertFalse($this->sample->has('other'));
         $this->assertTrue($this->sample->sidebar->has('header'));
-        $this->assertEquals(implode(',',$this->sample->keys()),'main,sidebar,breadcrumbs');
+        $this->assertEquals(implode(',', $this->sample->keys()), 'main,sidebar,breadcrumbs');
     }
 
-    public function testSetAndDelete ()
+    public function testSetAndDelete()
     {
-        $this->sample->set('new',[
+        $this->sample->set('new', [
             'label'   => 'new navigation',
             'options' => ['class' => 'header'],
         ]);
