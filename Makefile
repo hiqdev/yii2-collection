@@ -1,6 +1,7 @@
-# @link    http://hiqdev.com/yii2-collection
-# @license http://hiqdev.com/yii2-collection/license
-# @copyright Copyright (c) 2015 HiQDev
+### @package   yii2-collection
+### @link      http://hiqdev.com/yii2-collection
+### @license   http://hiqdev.com/yii2-collection/license
+### @copyright Copyright (c) 2015 HiQDev
 
 help:
 	@echo Usage:
@@ -21,7 +22,8 @@ runtests:
 
 tests: install buildtests runtests
 
-checks: fix tests
+### to be: fix tests
+checks: tests
 
 fix:
 	./vendor/bin/php-cs-fixer fix . --no-interaction
