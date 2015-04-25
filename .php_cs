@@ -7,7 +7,6 @@ $header = <<<EOF
 @copyright Copyright (c) 2015 HiQDev
 EOF;
 
-Symfony\CS\Fixer\Contrib\HeaderCommentFixer::setPhpdoc(true);
 Symfony\CS\Fixer\Contrib\HeaderCommentFixer::setHeader($header);
 
 return Symfony\CS\Config\Config::create()
