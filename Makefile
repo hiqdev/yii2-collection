@@ -22,8 +22,7 @@ runtests:
 
 tests: install buildtests runtests
 
-### to be: fix tests
-checks: tests
+checks: fix tests
 
 fix:
 	./vendor/bin/php-cs-fixer fix . --no-interaction
