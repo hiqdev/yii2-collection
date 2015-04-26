@@ -174,7 +174,7 @@ trait CollectionTrait
      *
      * @param string       $name   item name.
      * @param array        $config item instance configuration.
-     * @param string|array $where  can be 'first', 'last' or array like ['before' => 'd','after' => ['a','b']]
+     * @param string|array $where  where to put, can be: 'first', 'last' or array like ['before' => 'd','after' => ['a','b']]
      *
      * @return $this for chaining
      */
@@ -193,10 +193,11 @@ trait CollectionTrait
     }
 
     /**
-     * Add array of items. Silently resets if already exists.
+     * Add array of items to specified place.
+     * Silently resets if already exists.
      *
      * @param array        $items item instance configuration.
-     * @param string|array $where can be 'first', 'last' or array like ['before' => 'd','after' => ['a','b']]
+     * @param string|array $where where to add @see add()
      *
      * @return $this for chaining
      */
@@ -217,10 +218,18 @@ trait CollectionTrait
         return $this;
     }
 
+    /**
+     * Internal function to prepare new list of items with given items inserted inside.
+     *
+     * @param array        $items item instance configuration.
+     * @param string|array $where where to insert @see add()
+     *
+     * @return array       new items list
+     */
     protected static function insertInside($items, $where)
     {
-        $before = static::prepareWhereList($where['before']);
-        $after  = static::prepareWhereList($where['after']);
+        $before = static::convertWhere2List($where['before']);
+        $after  = static::convertWhere2List($where['after']);
         $new    = [];
         $found  = false;
         foreach ($this->_items as $k => $v) {
@@ -242,7 +251,15 @@ trait CollectionTrait
         return $new;
     }
 
-    protected static function prepareWhereList($list)
+    /**
+     * Internal function to convert where to list
+     *
+     * @param array        $items item instance configuration.
+     * @param string|array $where where to insert @see add()
+     *
+     * @return array
+     */
+    protected static function convertWhere2List($list)
     {
         if (is_array($list)) {
             foreach ($list as $v) {
