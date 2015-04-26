@@ -1,7 +1,7 @@
 <?php
 
 $header = <<<EOF
-HiQDev Collection for Yii 2
+HiQDev Collection for Yii 2.
 
 @package   yii2-collection
 @link      http://hiqdev.com/yii2-collection

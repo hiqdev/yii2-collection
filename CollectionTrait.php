@@ -1,12 +1,13 @@
 <?php
-/**
- * HiQDev Collection for Yii 2
+
+/*
+ * HiQDev Collection for Yii 2.
  *
- * @package   yii2-collection
  * @link      http://hiqdev.com/yii2-collection
  * @license   http://hiqdev.com/yii2-collection/license
  * @copyright Copyright (c) 2015 HiQDev
  */
+
 namespace hiqdev\collection;
 
 use Yii;
@@ -224,7 +225,7 @@ trait CollectionTrait
      * @param array        $items item instance configuration.
      * @param string|array $where where to insert @see add()
      *
-     * @return array       new items list
+     * @return array new items list
      */
     protected static function insertInside($items, $where)
     {
@@ -252,10 +253,9 @@ trait CollectionTrait
     }
 
     /**
-     * Internal function to convert where to list
+     * Internal function to prepare where list for insertInside.
      *
-     * @param array        $items item instance configuration.
-     * @param string|array $where where to insert @see add()
+     * @param array $list array to convert
      *
      * @return array
      */
