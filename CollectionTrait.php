@@ -18,15 +18,28 @@ use Yii;
  */
 trait CollectionTrait
 {
-    /**
-     * @var string default class to create item objects
-     */
-    public $itemClass;
+    use \yii\base\ArrayableTrait;
 
     /**
-     * @var array list of items with their configuration in format: 'name' => [...]
+     * @var array default items
+     */
+    protected static $_defaults = [];
+
+    /**
+     * @var array items
      */
     protected $_items = [];
+
+    /**
+     * Initializes with defaults if appliable.
+     */
+    public function init()
+    {
+        parent::init();
+        if (!$this->_items && static::$_defaults) {
+            $this->_items = static::$_defaults;
+        }
+    }
 
     /**
      * Set them all!
@@ -45,49 +58,13 @@ trait CollectionTrait
     }
 
     /**
-     * Get them all!
-     *
-     * @return array list of items
-     */
-    public function getItems()
-    {
-        $items = [];
-        foreach ($this->_items as $name => $item) {
-            $items[$name] = $this->get($name);
-        }
-
-        return $items;
-    }
-
-    /**
      * Set an item.
      *
      * @return $this for chaining
      */
-    public function set($name, $config = [])
+    public function set($name, $value = null)
     {
-        $this->_items[$name] = $config;
-
-        return $this;
-    }
-
-    /**
-     * @param string $name item name.
-     *
-     * @throws InvalidParamException on non existing item request.
-     *
-     * @return object item instance.
-     */
-    public function get($name)
-    {
-        if (!$this->has($name)) {
-            throw new InvalidParamException("Unknown item '{$name}'.");
-        };
-        if (!is_object($this->_items[$name])) {
-            $this->_items[$name] = $this->create($name, $this->_items[$name]);
-        };
-
-        return $this->_items[$name];
+        $this->_items[$name] = $value;
     }
 
     /**
@@ -103,25 +80,29 @@ trait CollectionTrait
     }
 
     /**
-     * Creates item instance from array configuration.
+     * Get them alldt! as array of items!
      *
-     * @param string $name   item name.
-     * @param array  $config item instance configuration.
-     *
-     * @return item instance.
+     * @return array list of items
      */
-    protected function create($name, array $config = [])
+    public function getItems()
     {
-        return Yii::createObject(array_merge([
-            'class' => $this->itemClass ?: static::className(),
-            //'name'          => $name,
-            //'collection'    => $this,
-        ], $config));
+        return $this->_items;
     }
 
     /**
-     * Getter magic method.
-     * This method is overridden to support accessing components like reading properties.
+     * Returns item by name.
+     *
+     * @param string $name item name.
+     *
+     * @return mixed item value.
+     */
+    public function get($name)
+    {
+        return $this->_items[$name];
+    }
+
+    /**
+     * This method is overridden to support accessing items like properties.
      *
      * @param string $name component or property name
      *
@@ -129,10 +110,27 @@ trait CollectionTrait
      */
     public function __get($name)
     {
-        if ($this->has($name)) {
-            return $this->get($name);
-        } else {
+        if ($this->hasProperty($name)) {
             return parent::__get($name);
+        } else {
+            return $this->get($name);
+        }
+    }
+
+    /**
+     * This method is overridden to support accessing items like properties.
+     *
+     * @param string $name  item or property name
+     * @param string $value value to be set
+     *
+     * @return mixed item of found or the named property value
+     */
+    public function __set($name,$value)
+    {
+        if ($this->hasProperty($name)) {
+            parent::__set($name,$value);
+        } else {
+            $this->set($name,$value);
         }
     }
 
@@ -146,7 +144,24 @@ trait CollectionTrait
      */
     public function __isset($name)
     {
-        return isset($this->_items[$name]) || parent::__isset($name);
+        return $this->has($name) || parent::__isset($name);
+    }
+
+    /**
+     * Checks if a property value is null.
+     * This method overrides the parent implementation by checking if the named item is loaded.
+     *
+     * @param string $name the property name or the event name
+     *
+     * @return bool whether the property value is null
+     */
+    public function __unset($name)
+    {
+        if ($this->hasProperty($name)) {
+            parent::__unset($name);
+        } else {
+            $this->delete($name);
+        }
     }
 
     /**
@@ -174,21 +189,21 @@ trait CollectionTrait
     /**
      * Adds an item. Silently resets if already exists.
      *
-     * @param string       $name   item name.
-     * @param array        $config item instance configuration.
-     * @param string|array $where  where to put, can be: 'first', 'last' or array like ['before' => 'd','after' => ['a','b']]
+     * @param string       $name  item name.
+     * @param array        $value item value.
+     * @param string|array $where where to put, can be: 'first', 'last' or array like ['before' => 'd','after' => ['a','b']]
      *
      * @return $this for chaining
      */
-    public function add($name, $config = [], $where = 'last')
+    public function add($name, $value = null, $where = 'last')
     {
         if ($where === 'last' || $this->has($name)) {
-            return $this->set($name, $config);
+            return $this->set($name, $value);
         }
         if ($where === 'first') {
-            $this->_items = array_merge([$name => $config], $this->_items);
+            $this->_items = array_merge([$name => $value], $this->_items);
         } else {
-            $this->_items = $this->insertInside([$name => $config], $where);
+            $this->_items = $this->insertInside([$name => $value], $where);
         }
 
         return $this;
@@ -198,7 +213,7 @@ trait CollectionTrait
      * Add array of items to specified place.
      * Silently resets if already exists.
      *
-     * @param array        $items item instance configuration.
+     * @param array        $items array of items.
      * @param string|array $where where to add @see add()
      *
      * @return $this for chaining
@@ -223,7 +238,7 @@ trait CollectionTrait
     /**
      * Internal function to prepare new list of items with given items inserted inside.
      *
-     * @param array        $items item instance configuration.
+     * @param array        $items array of items.
      * @param string|array $where where to insert @see add()
      *
      * @return array new items list
@@ -271,5 +286,69 @@ trait CollectionTrait
         }
 
         return $res;
+    }
+
+    /**
+     * The default implementation of this method returns [[attributes()]] indexed by the same attribute names.
+     *
+     * @return array the list of field names or field definitions.
+     * @see toArray()
+     */
+    public function fields()
+    {
+        $fields = $this->keys();
+
+        return array_combine($fields, $fields);
+    }
+
+    /**
+     * Returns whether there is an element at the specified offset.
+     * This method is required by the SPL interface `ArrayAccess`.
+     * It is implicitly called when you use something like `isset($collection[$offset])`.
+     *
+     * @param mixed $offset the offset to check on
+     * @return boolean
+     */
+    public function offsetExists($offset)
+    {
+        return $this->has($offset);
+    }
+
+    /**
+     * Returns the element at the specified offset.
+     * This method is required by the SPL interface `ArrayAccess`.
+     * It is implicitly called when you use something like `$value = $collection[$offset];`.
+     *
+     * @param mixed $offset the offset to retrieve element.
+     * @return mixed the element at the offset, null if no element is found at the offset
+     */
+    public function offsetGet($offset)
+    {
+        return $this->get($offset);
+    }
+
+    /**
+     * Sets the element at the specified offset.
+     * This method is required by the SPL interface `ArrayAccess`.
+     * It is implicitly called when you use something like `$collection[$offset] = $value;`.
+     *
+     * @param integer $offset the offset to set element
+     * @param mixed $value the element value
+     */
+    public function offsetSet($offset, $value)
+    {
+        $this->set($offset,$value);
+    }
+
+    /**
+     * Sets the element value at the specified offset to null.
+     * This method is required by the SPL interface `ArrayAccess`.
+     * It is implicitly called when you use something like `unset($collection[$offset])`.
+     *
+     * @param mixed $offset the offset to unset element
+     */
+    public function offsetUnset($offset)
+    {
+        $this->delete($offset);
     }
 }
