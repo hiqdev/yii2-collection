@@ -14,22 +14,20 @@ install:
 	composer update --prefer-dist --no-interaction
 
 setpath:
-	export PATH="${HOME}/.composer/vendor/bin:${PATH}"
+	export CBIN="${HOME}/.composer/vendor/bin"
 
 buildtests: setpath
-	codecept build --no-interaction
+	${CBIN}/codecept build --no-interaction
 
 runtests: setpath
-	codecept run --no-interaction
+	${CBIN}/codecept run --no-interaction
 
 tests: install buildtests runtests
 
 checks: fix tests
 
 fix: setpath
-	env
-	echo $0
-	php-cs-fixer fix . --no-interaction
+	${CBIN}/php-cs-fixer fix . --no-interaction
 
 clean:
 	rm -rf vendor composer.lock tests/unit/UnitTester.php
