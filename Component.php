@@ -11,10 +11,13 @@
 
 namespace hiqdev\collection;
 
+use ArrayAccess;
+use yii\base\Arrayable;
+
 /**
- * Collection Component.
+ * Component with collection.
  */
-class Component extends \yii\base\Component
+class Component extends \yii\base\Component implements ArrayAccess, Arrayable
 {
     use CollectionTrait;
 }

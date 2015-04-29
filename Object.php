@@ -11,10 +11,14 @@
 
 namespace hiqdev\collection;
 
+use ArrayAccess;
+use yii\base\Arrayable;
+
 /**
  * Collection Object.
+ * Simply holds items.
  */
-class Object extends \yii\base\Object
+class Object extends \yii\base\Object implements ArrayAccess, Arrayable
 {
     use CollectionTrait;
 }
