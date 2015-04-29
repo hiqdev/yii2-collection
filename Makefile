@@ -3,6 +3,8 @@
 ### @license   BSD 3-clause
 ### @copyright Copyright (c) 2015 HiQDev
 
+CBIN = ${HOME}/.composer/vendor/bin
+
 help:
 	@echo Usage:
 	@echo - make tests - To install and run tests
@@ -14,13 +16,12 @@ install:
 	composer update --prefer-dist --no-interaction
 
 setpath:
-	export CBIN="${HOME}/.composer/vendor/bin"
 
 buildtests: setpath
-	${CBIN}/codecept build --no-interaction
+	$(CBIN)/codecept build --no-interaction
 
 runtests: setpath
-	${CBIN}/codecept run --no-interaction
+	$(CBIN)/codecept run
 
 tests: install buildtests runtests
 
@@ -28,7 +29,7 @@ checks: fix tests
 
 fix: setpath
 	env
-	${CBIN}/php-cs-fixer fix . --no-interaction
+	$(CBIN)/php-cs-fixer fix . --no-interaction
 
 clean:
 	rm -rf vendor composer.lock tests/unit/UnitTester.php
