@@ -39,7 +39,6 @@ class ComponentTest extends \yii\codeception\TestCase
         //parent::tearDown();
         $this->sample = null;
     }
-
 }
 
 class NewComponent extends \hiqdev\collection\Component

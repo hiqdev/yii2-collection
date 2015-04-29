@@ -78,6 +78,7 @@ class Manager extends Component
      * Instantiates all the items.
      *
      * @return array list of items
+     *
      * @see get
      */
     public function getItems()
@@ -88,5 +89,4 @@ class Manager extends Component
 
         return $this->_items;
     }
-
 }

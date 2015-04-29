@@ -55,7 +55,6 @@ class ManagerTest extends \yii\codeception\TestCase
         $this->sample->delete('new');
         $this->assertFalse($this->sample->has('new'));
     }
-
 }
 
 class NewManager extends \hiqdev\collection\Manager

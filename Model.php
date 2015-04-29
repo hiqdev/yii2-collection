@@ -43,12 +43,12 @@ class Model extends \yii\base\Model
      *
      * @return mixed item of found or the named property value
      */
-    public function __set($name,$value)
+    public function __set($name, $value)
     {
         if ($this->hasProperty($name)) {
-            parent::__set($name,$value);
+            parent::__set($name, $value);
         } else {
-            $this->set($name,$value);
+            $this->set($name, $value);
         }
     }
 
@@ -81,5 +81,4 @@ class Model extends \yii\base\Model
             $this->delete($name);
         }
     }
-
 }

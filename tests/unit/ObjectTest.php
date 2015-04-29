@@ -39,7 +39,6 @@ class ObjectTest extends \yii\codeception\TestCase
         //parent::tearDown();
         $this->sample = null;
     }
-
 }
 
 class NewObject extends \hiqdev\collection\Object

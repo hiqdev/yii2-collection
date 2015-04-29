@@ -125,12 +125,12 @@ trait CollectionTrait
      *
      * @return mixed item of found or the named property value
      */
-    public function __set($name,$value)
+    public function __set($name, $value)
     {
         if ($this->hasProperty($name)) {
-            parent::__set($name,$value);
+            parent::__set($name, $value);
         } else {
-            $this->set($name,$value);
+            $this->set($name, $value);
         }
     }
 
@@ -292,6 +292,7 @@ trait CollectionTrait
      * The default implementation of this method returns [[attributes()]] indexed by the same attribute names.
      *
      * @return array the list of field names or field definitions.
+     *
      * @see toArray()
      */
     public function fields()
@@ -307,7 +308,8 @@ trait CollectionTrait
      * It is implicitly called when you use something like `isset($collection[$offset])`.
      *
      * @param mixed $offset the offset to check on
-     * @return boolean
+     *
+     * @return bool
      */
     public function offsetExists($offset)
     {
@@ -320,6 +322,7 @@ trait CollectionTrait
      * It is implicitly called when you use something like `$value = $collection[$offset];`.
      *
      * @param mixed $offset the offset to retrieve element.
+     *
      * @return mixed the element at the offset, null if no element is found at the offset
      */
     public function offsetGet($offset)
@@ -332,12 +335,12 @@ trait CollectionTrait
      * This method is required by the SPL interface `ArrayAccess`.
      * It is implicitly called when you use something like `$collection[$offset] = $value;`.
      *
-     * @param integer $offset the offset to set element
-     * @param mixed $value the element value
+     * @param int   $offset the offset to set element
+     * @param mixed $value  the element value
      */
     public function offsetSet($offset, $value)
     {
-        $this->set($offset,$value);
+        $this->set($offset, $value);
     }
 
     /**

@@ -90,27 +90,27 @@ trait CollectionTestTrait
 
     public function testAddExisting()
     {
-        foreach ([null,'first','last',['before' => 'last']] as $where) {
-            $this->sample->add('existing','value');
+        foreach ([null, 'first', 'last', ['before' => 'last']] as $where) {
+            $this->sample->add('existing', 'value');
             $this->assertEquals(array_keys($this->items), $this->sample->keys());
         };
     }
 
     public function testAddDefault()
     {
-        $this->sample->add('new','value');
-        $this->assertEquals(array_merge(array_keys($this->items),['new']), $this->sample->keys());
+        $this->sample->add('new', 'value');
+        $this->assertEquals(array_merge(array_keys($this->items), ['new']), $this->sample->keys());
     }
 
     public function testAddFirst()
     {
-        $this->sample->add('new','value','first');
-        $this->assertEquals(array_merge(['new'],array_keys($this->items)), $this->sample->keys());
+        $this->sample->add('new', 'value', 'first');
+        $this->assertEquals(array_merge(['new'], array_keys($this->items)), $this->sample->keys());
     }
 
     public function testAddLast()
     {
-        $this->sample->add('new','value','last');
-        $this->assertEquals(array_merge(array_keys($this->items),['new']), $this->sample->keys());
+        $this->sample->add('new', 'value', 'last');
+        $this->assertEquals(array_merge(array_keys($this->items), ['new']), $this->sample->keys());
     }
 }
