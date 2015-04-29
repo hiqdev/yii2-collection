@@ -27,6 +27,7 @@ tests: install buildtests runtests
 checks: fix tests
 
 fix: setpath
+	env
 	${CBIN}/php-cs-fixer fix . --no-interaction
 
 clean:
