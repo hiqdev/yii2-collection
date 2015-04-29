@@ -11,20 +11,22 @@ help:
 install:
 	composer self-update && composer --version
 	composer global require "fxp/composer-asset-plugin:1.*" "codeception/codeception:2.*" "fabpot/php-cs-fixer:1.*"
-	export PATH="${HOME}/.composer/vendor/bin:${PATH}"
 	composer update --prefer-dist --no-interaction
 
-buildtests:
+setpath:
+	export PATH="${HOME}/.composer/vendor/bin:${PATH}"
+
+buildtests: setpath
 	codecept build --no-interaction
 
-runtests:
+runtests: setpath
 	codecept run --no-interaction
 
 tests: install buildtests runtests
 
 checks: fix tests
 
-fix:
+fix: setpath
 	php-cs-fixer fix . --no-interaction
 
 clean:
