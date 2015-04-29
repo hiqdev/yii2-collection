@@ -18,6 +18,29 @@ use Yii;
  */
 trait CollectionTestTrait
 {
+    /**
+     * @var array items
+     */
+    protected $items = [
+        'null'      => null,
+        'zero'      => [],
+        'empty'     => [],
+        'string'    => [],
+        'single'    => [],
+        'hash'      => [],
+        'main'      => [],
+        'sidebar'   => [
+            'items' => [
+                'header' => [
+                    'label'   => 'MAIN NAVIGATION',
+                    'options' => ['class' => 'header'],
+                ],
+            ],
+        ],
+        'existing'  => [],
+        'last'      => [],
+    ];
+
     public function testHas()
     {
         foreach ($this->items as $k => $v) {
@@ -33,16 +56,19 @@ trait CollectionTestTrait
 
     public function testKeys()
     {
-        $this->assertEquals(array_keys($this->items), $this->sample->keys());
+        $this->assertEquals($this->sample->keys(), array_keys($this->items));
     }
 
-    public function testSet()
+    public function testSetNew()
     {
-        $this->sample->set('new', [
-            'label'   => 'new navigation',
-            'options' => ['class' => 'header'],
-        ]);
+        $this->sample->set('new', 'the new one');
         $this->assertTrue($this->sample->has('new'));
+    }
+
+    public function testSetExisting()
+    {
+        $this->sample->set('existing', 'the new one');
+        $this->assertEquals($this->sample->keys(), array_keys($this->items));
     }
 
     public function testDelete()
@@ -60,6 +86,14 @@ trait CollectionTestTrait
             $this->assertFalse($this->sample->has($k));
         }
         $this->assertEquals([], $this->sample->keys());
+    }
+
+    public function testAddExisting()
+    {
+        foreach ([null,'first','last',['before' => 'last']] as $where) {
+            $this->sample->add('existing','value');
+            $this->assertEquals(array_keys($this->items), $this->sample->keys());
+        };
     }
 
     public function testAddDefault()

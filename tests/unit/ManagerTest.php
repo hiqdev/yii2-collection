@@ -14,6 +14,7 @@ namespace hiqdev\collection\tests\unit;
 use Yii;
 
 /**
+ * Manager test suite.
  */
 class ManagerTest extends \yii\codeception\TestCase
 {
@@ -23,19 +24,6 @@ class ManagerTest extends \yii\codeception\TestCase
      * @var NewManager
      */
     protected $sample;
-
-    protected $items = [
-        'main'    => [],
-        'sidebar' => [
-            'items' => [
-                'header' => [
-                    'label'   => 'MAIN NAVIGATION',
-                    'options' => ['class' => 'header'],
-                ],
-            ],
-        ],
-        'breadcrumbs' => [],
-    ];
 
     protected function setUp()
     {
@@ -55,7 +43,6 @@ class ManagerTest extends \yii\codeception\TestCase
     public function testDeepHas()
     {
         $this->assertTrue($this->sample->sidebar->has('header'));
-        $this->assertEquals(implode(',', $this->sample->keys()), 'main,sidebar,breadcrumbs');
     }
 
     public function testSetAndDelete()

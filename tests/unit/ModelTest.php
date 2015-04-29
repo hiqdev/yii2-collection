@@ -25,18 +25,6 @@ class ModelTest extends \yii\codeception\TestCase
      */
     protected $sample;
 
-    /**
-     * @var array items
-     */
-    protected $items = [
-        'null'      => null,
-        'zero'      => 0,
-        'empty'     => [],
-        'string'    => 'word',
-        'single'    => ['item'],
-        'hash'      => ['a' => 1, 'b' => 2],
-    ];
-
     protected function setUp()
     {
         //parent::setUp();
