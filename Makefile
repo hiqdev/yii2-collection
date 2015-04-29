@@ -27,7 +27,7 @@ tests: install buildtests runtests
 checks: fix tests
 
 fix: setpath
-    ls -la ${HOME}/.composer/vendor/bin
+	ls -la ${HOME}/.composer/vendor/bin
 	php-cs-fixer fix . --no-interaction
 
 clean:
