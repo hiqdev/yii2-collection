@@ -101,7 +101,7 @@ class Manager extends Component
     public function getItems()
     {
         foreach ($this->_items as $name => $item) {
-            $this->get($name);
+            $this->getItem($name);
         }
 
         return $this->_items;
