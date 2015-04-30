@@ -42,6 +42,89 @@ trait CollectionTrait
     }
 
     /**
+     * Returns item by name.
+     *
+     * @param string $name item name.
+     *
+     * @return mixed item value.
+     */
+    public function getItem($name)
+    {
+        return $this->_items[$name];
+    }
+
+    /**
+     * Set an item.
+     *
+     * @return $this for chaining
+     */
+    public function setItem($name, $value = null)
+    {
+        $this->_items[$name] = $value;
+    }
+
+    /**
+     * Adds an item. Silently resets if already exists.
+     *
+     * @param string       $name  item name.
+     * @param array        $value item value.
+     * @param string|array $where where to put, can be: 'first', 'last' or array like ['before' => 'd','after' => ['a','b']]
+     */
+    public function addItem($name, $value = null, $where = 'last')
+    {
+        if ($where === 'last' || $this->has($name)) {
+            return $this->set($name, $value);
+        }
+        if ($where === 'first') {
+            $this->_items = array_merge([$name => $value], $this->_items);
+        } else {
+            $this->_items = $this->insertInside([$name => $value], $where);
+        }
+    }
+
+    /**
+     * Check collection has the item.
+     *
+     * @param string $name item name.
+     *
+     * @return bool whether item exist.
+     */
+    public function hasItem($name)
+    {
+        return array_key_exists($name, $this->_items);
+    }
+
+    /**
+     * Check is item set.
+     *
+     * @param string $name item name.
+     *
+     * @return bool whether item is set.
+     */
+    public function issetItem($name)
+    {
+        return isset($this->_items[$name]);
+    }
+
+    /**
+     * Delete an item.
+     */
+    public function unsetItem($name)
+    {
+        unset($this->_items[$name]);
+    }
+
+    /**
+     * Get them alldt! as array of items!
+     *
+     * @return array list of items
+     */
+    public function getItems()
+    {
+        return $this->_items;
+    }
+
+    /**
      * Set them all!
      *
      * @param array $items list of items
@@ -58,165 +141,11 @@ trait CollectionTrait
     }
 
     /**
-     * Set an item.
-     *
-     * @return $this for chaining
-     */
-    public function set($name, $value = null)
-    {
-        $this->_items[$name] = $value;
-    }
-
-    /**
-     * Check collection has the item.
-     *
-     * @param string $name item name.
-     *
-     * @return bool whether item exist.
-     */
-    public function has($name)
-    {
-        return array_key_exists($name, $this->_items);
-    }
-
-    /**
-     * Get them alldt! as array of items!
-     *
-     * @return array list of items
-     */
-    public function getItems()
-    {
-        return $this->_items;
-    }
-
-    /**
-     * Returns item by name.
-     *
-     * @param string $name item name.
-     *
-     * @return mixed item value.
-     */
-    public function get($name)
-    {
-        return $this->_items[$name];
-    }
-
-    /**
-     * This method is overridden to support accessing items like properties.
-     *
-     * @param string $name component or property name
-     *
-     * @return mixed item of found or the named property value
-     */
-    public function __get($name)
-    {
-        if ($this->hasProperty($name)) {
-            return parent::__get($name);
-        } else {
-            return $this->get($name);
-        }
-    }
-
-    /**
-     * This method is overridden to support accessing items like properties.
-     *
-     * @param string $name  item or property name
-     * @param string $value value to be set
-     *
-     * @return mixed item of found or the named property value
-     */
-    public function __set($name, $value)
-    {
-        if ($this->hasProperty($name)) {
-            parent::__set($name, $value);
-        } else {
-            $this->set($name, $value);
-        }
-    }
-
-    /**
-     * Checks if a property value is null.
-     * This method overrides the parent implementation by checking if the named item is loaded.
-     *
-     * @param string $name the property name or the event name
-     *
-     * @return bool whether the property value is null
-     */
-    public function __isset($name)
-    {
-        return $this->has($name) || parent::__isset($name);
-    }
-
-    /**
-     * Checks if a property value is null.
-     * This method overrides the parent implementation by checking if the named item is loaded.
-     *
-     * @param string $name the property name or the event name
-     *
-     * @return bool whether the property value is null
-     */
-    public function __unset($name)
-    {
-        if ($this->hasProperty($name)) {
-            parent::__unset($name);
-        } else {
-            $this->delete($name);
-        }
-    }
-
-    /**
-     * Delete an item.
-     *
-     * @return $this for chaining
-     */
-    public function delete($name)
-    {
-        unset($this->_items[$name]);
-
-        return $this;
-    }
-
-    /**
-     * Get keys.
-     *
-     * @return $this for chaining
-     */
-    public function keys()
-    {
-        return array_keys($this->_items);
-    }
-
-    /**
-     * Adds an item. Silently resets if already exists.
-     *
-     * @param string       $name  item name.
-     * @param array        $value item value.
-     * @param string|array $where where to put, can be: 'first', 'last' or array like ['before' => 'd','after' => ['a','b']]
-     *
-     * @return $this for chaining
-     */
-    public function add($name, $value = null, $where = 'last')
-    {
-        if ($where === 'last' || $this->has($name)) {
-            return $this->set($name, $value);
-        }
-        if ($where === 'first') {
-            $this->_items = array_merge([$name => $value], $this->_items);
-        } else {
-            $this->_items = $this->insertInside([$name => $value], $where);
-        }
-
-        return $this;
-    }
-
-    /**
      * Add array of items to specified place.
      * Silently resets if already exists.
      *
      * @param array        $items array of items.
      * @param string|array $where where to add @see add()
-     *
-     * @return $this for chaining
      */
     public function addItems(array $items, $where = 'last')
     {
@@ -231,8 +160,102 @@ trait CollectionTrait
         } else {
             $this->_items = $this->insertInside($items, $where);
         }
+    }
 
-        return $this;
+    /**
+     * Returns property of item by name.
+     *
+     * @param mixed $name
+     *
+     * @return mixed
+     */
+    public function get($name)
+    {
+        return $this->__get($name);
+    }
+
+    /**
+     * Sets the element at the specified offset.
+     *
+     * @param int|string $name
+     * @param mixed      $value  the element value
+     */
+    public function set($name, $value)
+    {
+        $this->__set($name, $value);
+    }
+
+    /**
+     * Adds an item. Silently resets if already exists.
+     *
+     * @param string       $name  item name.
+     * @param array        $value item value.
+     * @param string|array $where where to put, can be: 'first', 'last' or array like ['before' => 'd','after' => ['a','b']]
+     *
+     * @return $this for chaining
+     */
+    public function add($name, $value = null, $where = 'last')
+    {
+        if ($this->has($name)) {
+            $this->set($name, $value);
+        } else {
+            $this->addItem($name, $value, $where);
+        }
+    }
+    /**
+     * Check collection has the item.
+     *
+     * @param string $name item name.
+     *
+     * @return bool whether item exist.
+     */
+    public function has($name)
+    {
+        return $this->hasProperty($name) || $this->hasItem($name);
+    }
+
+    public function hasProperty($name, $checkVars = true, $checkBehaviors = true)
+    {
+        return $name ? parent::hasProperty($name, $checkVars, $checkBehaviors) : false;
+    }
+
+    /**
+     * Delete an item.
+     */
+    public function delete($name)
+    {
+        $this->__unset($name);
+    }
+
+    /**
+     * Get keys.
+     *
+     * @return $this for chaining
+     */
+    public function keys()
+    {
+        return array_keys($this->_items);
+    }
+
+    /**
+     * The default implementation of this method returns [[attributes()]] indexed by the same attribute names.
+     *
+     * @return array the list of field names or field definitions.
+     *
+     * @see toArray()
+     */
+    public function fields()
+    {
+        $fields = $this->keys();
+
+        return array_combine($fields, $fields);
+    }
+
+    public function mset(array $values)
+    {
+        foreach ($values as $k => $v) {
+            $this->__set($k, $v);
+        }
     }
 
     /**
@@ -289,17 +312,93 @@ trait CollectionTrait
     }
 
     /**
-     * The default implementation of this method returns [[attributes()]] indexed by the same attribute names.
+     * This method is overridden to support accessing items like properties.
      *
-     * @return array the list of field names or field definitions.
+     * @param string $name component or property name
      *
-     * @see toArray()
+     * @return mixed item of found or the named property value
      */
-    public function fields()
+    public function __get($name)
     {
-        $fields = $this->keys();
+        if ($this->hasProperty($name)) {
+            return parent::__get($name);
+        } else {
+            return $this->getItem($name);
+        }
+    }
 
-        return array_combine($fields, $fields);
+    /**
+     * This method is overridden to support accessing items like properties.
+     *
+     * @param string $name  item or property name
+     * @param string $value value to be set
+     *
+     * @return mixed item of found or the named property value
+     */
+    public function __set($name, $value)
+    {
+        if ($this->hasProperty($name)) {
+            parent::__set($name, $value);
+        } else {
+            $this->setItem($name, $value);
+        }
+    }
+
+    /**
+     * Checks if a property value is null.
+     * This method overrides the parent implementation by checking if the named item is loaded.
+     *
+     * @param string $name the property name or the event name
+     *
+     * @return bool whether the property value is null
+     */
+    public function __isset($name)
+    {
+        return parent::__isset($name) || $this->issetItem($name);
+    }
+
+    /**
+     * Checks if a property value is null.
+     * This method overrides the parent implementation by checking if the named item is loaded.
+     *
+     * @param string $name the property name or the event name
+     *
+     * @return bool whether the property value is null
+     */
+    public function __unset($name)
+    {
+        if ($this->hasProperty($name)) {
+            parent::__unset($name);
+        } else {
+            $this->unsetItem($name);
+        }
+    }
+
+    /**
+     * Returns the element at the specified offset.
+     * This method is required by the SPL interface `ArrayAccess`.
+     * It is implicitly called when you use something like `$value = $collection[$offset];`.
+     *
+     * @param mixed $offset the offset to retrieve element.
+     *
+     * @return mixed the element at the offset, null if no element is found at the offset
+     */
+    public function offsetGet($offset)
+    {
+        return $this->__get($offset);
+    }
+
+    /**
+     * Sets the element at the specified offset.
+     * This method is required by the SPL interface `ArrayAccess`.
+     * It is implicitly called when you use something like `$collection[$offset] = $value;`.
+     *
+     * @param int   $offset the offset to set element
+     * @param mixed $value  the element value
+     */
+    public function offsetSet($offset, $value)
+    {
+        $this->__set($offset, $value);
     }
 
     /**
@@ -317,33 +416,6 @@ trait CollectionTrait
     }
 
     /**
-     * Returns the element at the specified offset.
-     * This method is required by the SPL interface `ArrayAccess`.
-     * It is implicitly called when you use something like `$value = $collection[$offset];`.
-     *
-     * @param mixed $offset the offset to retrieve element.
-     *
-     * @return mixed the element at the offset, null if no element is found at the offset
-     */
-    public function offsetGet($offset)
-    {
-        return $this->get($offset);
-    }
-
-    /**
-     * Sets the element at the specified offset.
-     * This method is required by the SPL interface `ArrayAccess`.
-     * It is implicitly called when you use something like `$collection[$offset] = $value;`.
-     *
-     * @param int   $offset the offset to set element
-     * @param mixed $value  the element value
-     */
-    public function offsetSet($offset, $value)
-    {
-        $this->set($offset, $value);
-    }
-
-    /**
      * Sets the element value at the specified offset to null.
      * This method is required by the SPL interface `ArrayAccess`.
      * It is implicitly called when you use something like `unset($collection[$offset])`.
@@ -352,6 +424,6 @@ trait CollectionTrait
      */
     public function offsetUnset($offset)
     {
-        $this->delete($offset);
+        $this->__unset($offset);
     }
 }

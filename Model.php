@@ -31,7 +31,7 @@ class Model extends \yii\base\Model
         if ($this->hasProperty($name)) {
             return parent::__get($name);
         } else {
-            return $this->get($name);
+            return $this->getItem($name);
         }
     }
 
@@ -48,7 +48,7 @@ class Model extends \yii\base\Model
         if ($this->hasProperty($name)) {
             parent::__set($name, $value);
         } else {
-            $this->set($name, $value);
+            $this->setItem($name, $value);
         }
     }
 
@@ -62,7 +62,7 @@ class Model extends \yii\base\Model
      */
     public function __isset($name)
     {
-        return $this->has($name) || parent::__isset($name);
+        return parent::__isset($name) || $this->issetItem($name);
     }
 
     /**
@@ -78,7 +78,7 @@ class Model extends \yii\base\Model
         if ($this->hasProperty($name)) {
             parent::__unset($name);
         } else {
-            $this->delete($name);
+            $this->unsetItem($name);
         }
     }
 }
