@@ -41,6 +41,8 @@ trait CollectionTrait
         }
     }
 
+/// Item methods
+
     /**
      * Returns item by name.
      *
@@ -114,6 +116,8 @@ trait CollectionTrait
         unset($this->_items[$name]);
     }
 
+/// Items methods
+
     /**
      * Get them alldt! as array of items!
      *
@@ -161,6 +165,8 @@ trait CollectionTrait
             $this->_items = $this->insertInside($items, $where);
         }
     }
+
+/// normal methods
 
     /**
      * Returns property of item by name.
@@ -311,6 +317,8 @@ trait CollectionTrait
         return $res;
     }
 
+/// magic methods
+
     /**
      * This method is overridden to support accessing items like properties.
      *
@@ -373,6 +381,8 @@ trait CollectionTrait
             $this->unsetItem($name);
         }
     }
+
+/// ArrayAccess methods
 
     /**
      * Returns the element at the specified offset.
