@@ -74,8 +74,8 @@ trait CollectionTrait
      */
     public function addItem($name, $value = null, $where = 'last')
     {
-        if ($where === 'last' || $this->has($name)) {
-            return $this->set($name, $value);
+        if ($where === 'last' || $this->hasItem($name)) {
+            return $this->setItem($name, $value);
         }
         if ($where === 'first') {
             $this->_items = array_merge([$name => $value], $this->_items);
