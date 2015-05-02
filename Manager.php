@@ -32,13 +32,13 @@ class Manager extends Component
 
     public function getItemClass($name = null)
     {
-        return $this->_itemClass;
+        return $this->_itemClass ?: get_called_class();
     }
 
     public function getItemConfig($name = null, array $config = [])
     {
         return array_merge([
-            'class' => $this->getItemClass($name, $config) ?: static::className(),
+            'class' => $this->getItemClass($name, $config) ?: get_called_class(),
         ], $config);
     }
 
