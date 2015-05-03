@@ -11,8 +11,8 @@
 
 namespace hiqdev\collection;
 
-use Yii;
 use ArrayIterator;
+use Yii;
 
 /**
  * Collection Trait.
@@ -59,8 +59,8 @@ trait CollectionTrait
     /**
      * Straight put an item.
      *
-     * @param string       $name  item name.
-     * @param array        $value item value.
+     * @param string $name  item name.
+     * @param array  $value item value.
      */
     public function putItem($name, $value = null)
     {
@@ -68,7 +68,7 @@ trait CollectionTrait
     }
 
     /**
-     * Sets an item. Silently resets if already exists and mov
+     * Sets an item. Silently resets if already exists and mov.
      *
      * Where can be:
      * - '' - anywhere, default and fastest method
@@ -112,6 +112,7 @@ trait CollectionTrait
         if (!$this->hasItem($name)) {
             $this->setItem($name, $value, $where);
         }
+
         return $this;
     }
 
@@ -215,6 +216,7 @@ trait CollectionTrait
         if ($items) {
             $this->setItems($items);
         }
+
         return $this;
     }
 
@@ -236,7 +238,7 @@ trait CollectionTrait
      * Sets an item. Silently resets if already exists.
      *
      * @param int|string   $name
-     * @param mixed        $value  the element value
+     * @param mixed        $value the element value
      * @param string|array $where where to put, @see set()
      */
     public function set($name, $value, $where = '')
@@ -262,6 +264,7 @@ trait CollectionTrait
         if (!$this->has($name)) {
             $this->set($name, $value, $where);
         }
+
         return $this;
     }
     /**

@@ -42,7 +42,7 @@ trait CollectionTestTrait
     ];
 
     protected $existing = 'existing';
-    protected $value = 'the new value';
+    protected $value    = 'the new value';
 
     public function testHas()
     {
@@ -146,5 +146,4 @@ trait CollectionTestTrait
         }
         $this->assertEquals($keys, array_keys($this->items));
     }
-
 }
