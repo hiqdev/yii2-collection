@@ -41,6 +41,9 @@ trait CollectionTestTrait
         'last'      => [],
     ];
 
+    protected $existing = 'existing';
+    protected $value = 'the new value';
+
     public function testHas()
     {
         foreach ($this->items as $k => $v) {
@@ -67,8 +70,31 @@ trait CollectionTestTrait
 
     public function testSetExisting()
     {
-        $this->sample->set('existing', 'the new one');
-        $this->assertEquals($this->sample->keys(), array_keys($this->items));
+        $this->sample->set($this->existing, $this->value);
+        $this->assertEquals(array_keys($this->items), $this->sample->keys());
+        $this->assertEquals($this->value, $this->sample->get($this->existing));
+    }
+
+    public function testSetFirst()
+    {
+        $this->sample->set($this->existing, $this->value, 'first');
+        $keys = array_keys($this->items);
+        $keys = array_combine($keys, $keys);
+        unset($keys[$this->existing]);
+        $keys = array_merge([$this->existing], array_values($keys));
+        $this->assertEquals($keys, $this->sample->keys());
+        $this->assertEquals($this->value, $this->sample->get($this->existing));
+    }
+
+    public function testSetLast()
+    {
+        $this->sample->set($this->existing, $this->value, 'last');
+        $keys = array_keys($this->items);
+        $keys = array_combine($keys, $keys);
+        unset($keys[$this->existing]);
+        $keys = array_merge(array_values($keys), [$this->existing]);
+        $this->assertEquals($keys, $this->sample->keys());
+        $this->assertEquals($this->value, $this->sample->get($this->existing));
     }
 
     public function testDelete()
@@ -91,7 +117,7 @@ trait CollectionTestTrait
     public function testAddExisting()
     {
         foreach ([null, 'first', 'last', ['before' => 'last']] as $where) {
-            $this->sample->add('existing', 'value');
+            $this->sample->add($this->existing, $this->value, $where);
             $this->assertEquals(array_keys($this->items), $this->sample->keys());
         };
     }
@@ -113,4 +139,12 @@ trait CollectionTestTrait
         $this->sample->add('new', 'value', 'last');
         $this->assertEquals(array_merge(array_keys($this->items), ['new']), $this->sample->keys());
     }
+    public function testIteratorAggregate()
+    {
+        foreach ($this->sample as $k => $v) {
+            $keys[] = $k;
+        }
+        $this->assertEquals($keys, array_keys($this->items));
+    }
+
 }
