@@ -27,5 +27,4 @@ class Object extends \yii\base\Object implements ArrayAccess, IteratorAggregate,
     {
         return $name ? parent::hasProperty($name, $checkVars) : false;
     }
-
 }
