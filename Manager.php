@@ -35,11 +35,11 @@ class Manager extends Component
         return $this->_itemClass ?: get_called_class();
     }
 
-    public function getItemConfig($name = null, array $config = [])
+    public function getItemConfig($name = null, $config = [])
     {
         return array_merge([
             'class' => $this->getItemClass($name, $config) ?: get_called_class(),
-        ], $config);
+        ], (array) $config);
     }
 
     /**
@@ -50,7 +50,7 @@ class Manager extends Component
      *
      * @return item instance.
      */
-    protected function createItem($name, array $config = [])
+    protected function createItem($name, $config = [])
     {
         return Yii::createObject($this->getItemConfig($name, $config));
     }
@@ -78,11 +78,12 @@ class Manager extends Component
         /* XXX if (!$this->hasItem($name)) {
             throw new InvalidParamException("Unknown item '{$name}'.");
         }; */
-        if (!is_object($this->_items[$name])) {
-            $this->_items[$name] = $this->createItem($name, $this->_items[$name]);
+        $item = &$this->_items[$name];
+        if (is_array($item)) {
+            $item = $this->createItem($name, $item);
         };
 
-        return $this->_items[$name];
+        return $item;
     }
 
     public function hasObject($name)
