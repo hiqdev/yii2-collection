@@ -12,13 +12,14 @@
 namespace hiqdev\collection;
 
 use ArrayAccess;
+use IteratorAggregate;
 use yii\base\Arrayable;
 
 /**
  * Collection Object.
  * Simply holds items.
  */
-class Object extends \yii\base\Object implements ArrayAccess, Arrayable
+class Object extends \yii\base\Object implements ArrayAccess, IteratorAggregate, Arrayable
 {
     use CollectionTrait;
 

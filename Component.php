@@ -12,12 +12,13 @@
 namespace hiqdev\collection;
 
 use ArrayAccess;
+use IteratorAggregate;
 use yii\base\Arrayable;
 
 /**
  * Component with collection.
  */
-class Component extends \yii\base\Component implements ArrayAccess, Arrayable
+class Component extends \yii\base\Component implements ArrayAccess, IteratorAggregate, Arrayable
 {
     use CollectionTrait;
 }
