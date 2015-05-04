@@ -384,7 +384,7 @@ trait CollectionTrait
     public function smartSet(array $items, $after = '')
     {
         foreach ($items as $k => $v) {
-            $this->set($k, $v, $after);
+            $this->setItem($k, $v, $after);
             $after = ['after' => $k];
         }
     }
