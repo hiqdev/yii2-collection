@@ -474,7 +474,7 @@ trait CollectionTrait
      */
     public function offsetGet($offset)
     {
-        return $this->__get($offset);
+        return $this->getItem($offset);
     }
 
     /**
@@ -487,7 +487,7 @@ trait CollectionTrait
      */
     public function offsetSet($offset, $value)
     {
-        $this->__set($offset, $value);
+        $this->setItem($offset, $value);
     }
 
     /**
@@ -501,7 +501,7 @@ trait CollectionTrait
      */
     public function offsetExists($offset)
     {
-        return $this->has($offset);
+        return $this->hasItem($offset);
     }
 
     /**
@@ -513,7 +513,7 @@ trait CollectionTrait
      */
     public function offsetUnset($offset)
     {
-        $this->__unset($offset);
+        $this->unsetItem($offset);
     }
     public function getIterator()
     {
