@@ -243,7 +243,7 @@ trait CollectionTrait
      */
     public function set($name, $value, $where = '')
     {
-        if ($this->hasProperty($name)) {
+        if ($name && $this->canSetProperty($name)) {
             parent::__set($name, $value);
         } else {
             $this->setItem($name, $value, $where);
@@ -276,12 +276,7 @@ trait CollectionTrait
      */
     public function has($name)
     {
-        return $this->hasProperty($name) || $this->hasItem($name);
-    }
-
-    public function hasProperty($name, $checkVars = true, $checkBehaviors = true)
-    {
-        return $name ? parent::hasProperty($name, $checkVars, $checkBehaviors) : false;
+        return ($name && $this->hasProperty($name)) || $this->hasItem($name);
     }
 
     /**
@@ -411,7 +406,7 @@ trait CollectionTrait
      */
     public function __get($name)
     {
-        if ($this->hasProperty($name)) {
+        if ($name && $this->canGetProperty($name)) {
             return parent::__get($name);
         } else {
             return $this->getItem($name);
@@ -441,7 +436,7 @@ trait CollectionTrait
      */
     public function __isset($name)
     {
-        return parent::__isset($name) || $this->issetItem($name);
+        return ($name && parent::__isset($name)) || $this->issetItem($name);
     }
 
     /**
@@ -454,7 +449,7 @@ trait CollectionTrait
      */
     public function __unset($name)
     {
-        if ($this->hasProperty($name)) {
+        if ($name && $this->canSetProperty($name)) {
             parent::__unset($name);
         } else {
             $this->unsetItem($name);

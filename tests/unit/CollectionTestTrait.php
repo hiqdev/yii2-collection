@@ -57,6 +57,15 @@ trait CollectionTestTrait
         $this->assertFalse($this->sample->has(''));
     }
 
+    public function testEmptyName()
+    {
+        $empty = '';
+        $this->assertFalse(isset($this->sample->{$empty}));
+        $this->sample->{$empty} = $this->value;
+        $this->assertTrue(isset($this->sample->{$empty}));
+        $this->assertEquals($this->value, $this->sample->{$empty});
+    }
+
     public function testKeys()
     {
         $this->assertEquals($this->sample->keys(), array_keys($this->items));

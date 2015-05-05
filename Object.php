@@ -22,9 +22,4 @@ use yii\base\Arrayable;
 class Object extends \yii\base\Object implements ArrayAccess, IteratorAggregate, Arrayable
 {
     use CollectionTrait;
-
-    public function hasProperty($name, $checkVars = true)
-    {
-        return $name ? parent::hasProperty($name, $checkVars) : false;
-    }
 }
