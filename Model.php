@@ -77,5 +77,4 @@ class Model extends \yii\base\Model
     {
         return ($name && parent::__isset($name)) || $this->issetItem($name);
     }
-
 }
