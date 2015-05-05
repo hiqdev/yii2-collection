@@ -8,7 +8,6 @@
  * @license   BSD 3-clause
  * @copyright Copyright (c) 2015 HiQDev
  */
-
 namespace hiqdev\collection\tests\unit;
 
 use Yii;
@@ -22,14 +21,14 @@ trait CollectionTestTrait
      * @var array items
      */
     protected $items = [
-        'null'      => null,
-        'zero'      => [],
-        'empty'     => [],
-        'string'    => [],
-        'single'    => [],
-        'hash'      => [],
-        'main'      => [],
-        'sidebar'   => [
+        'null'    => null,
+        'zero'    => [],
+        'empty'   => [],
+        'string'  => [],
+        'single'  => [],
+        'hash'    => [],
+        'main'    => [],
+        'sidebar' => [
             'items' => [
                 'header' => [
                     'label'   => 'MAIN NAVIGATION',
@@ -37,8 +36,8 @@ trait CollectionTestTrait
                 ],
             ],
         ],
-        'existing'  => [],
-        'last'      => [],
+        'existing' => [],
+        'last'     => [],
     ];
 
     protected $existing = 'existing';

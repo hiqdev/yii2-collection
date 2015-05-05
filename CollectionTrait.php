@@ -8,7 +8,6 @@
  * @license   BSD 3-clause
  * @copyright Copyright (c) 2015 HiQDev
  */
-
 namespace hiqdev\collection;
 
 use ArrayIterator;
