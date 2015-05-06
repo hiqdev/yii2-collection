@@ -178,8 +178,11 @@ trait CollectionTrait
      * @param array $items list of items
      * @param mixed $where @see setItem
      */
-    public function setItems(array $items, $where = '')
+    public function setItems($items, $where = '')
     {
+        if (!$items) {
+            return;
+        }
         if ($where === '') {
             $this->putItems($items);
         } else {
