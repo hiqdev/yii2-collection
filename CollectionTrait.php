@@ -14,6 +14,7 @@ use Yii;
 
 /**
  * Collection Trait.
+ * Array inside of object.
  */
 trait CollectionTrait
 {
@@ -39,10 +40,5 @@ trait CollectionTrait
     public function getItems()
     {
         return $this->_items;
-    }
-
-    public function getIterator()
-    {
-        return new \ArrayIterator($this->_items);
     }
 }

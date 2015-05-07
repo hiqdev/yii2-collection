@@ -14,7 +14,7 @@ namespace hiqdev\collection;
  * Manager Component.
  * Instantiates all it's items when getting.
  */
-class Manager extends Component
+class Manager extends \yii\base\Component implements \ArrayAccess, \IteratorAggregate, \yii\base\Arrayable
 {
     use ManagerTrait;
 }

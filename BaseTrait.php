@@ -489,4 +489,15 @@ trait BaseTrait
     {
         $this->unsetItem($offset);
     }
+
+    /**
+     * Method for IteratorAggregate interface.
+     * Enables foreach'ing the object.
+     *
+     * @return ArrayIterator
+     */
+    public function getIterator()
+    {
+        return new \ArrayIterator($this->_items);
+    }
 }

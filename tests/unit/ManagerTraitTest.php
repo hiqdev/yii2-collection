@@ -62,6 +62,5 @@ class NewManagerTrait extends \yii\base\Component implements \ArrayAccess, \Iter
     public $label;
     public $options;
 
-    use \hiqdev\collection\BaseTrait;
     use \hiqdev\collection\ManagerTrait;
 }

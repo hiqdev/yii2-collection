@@ -10,14 +10,10 @@
  */
 namespace hiqdev\collection;
 
-use ArrayAccess;
-use IteratorAggregate;
-use yii\base\Arrayable;
-
 /**
  * Component with collection.
  */
-class Component extends \yii\base\Component implements ArrayAccess, IteratorAggregate, Arrayable
+class Component extends \yii\base\Component implements \ArrayAccess, \IteratorAggregate, \yii\base\Arrayable
 {
     use CollectionTrait;
 }

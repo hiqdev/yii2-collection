@@ -11,14 +11,15 @@
 namespace hiqdev\collection;
 
 use Yii;
-use yii\base\InvalidParamException;
 
 /**
  * Manager Trait.
- * Instantiates all it's items when getting.
+ * Like a collection but instantiates all it's items when getting.
  */
 trait ManagerTrait
 {
+    use BaseTrait;
+
     /**
      * @var string default class to create item objects
      */
@@ -64,15 +65,10 @@ trait ManagerTrait
      *
      * @param string $name item name.
      *
-     * @throws InvalidParamException on non existing item request.
-     *
      * @return object item instance.
      */
     public function getItem($name)
     {
-        /* XXX if (!$this->hasItem($name)) {
-            throw new InvalidParamException("Unknown item '{$name}'.");
-        }; */
         $item = &$this->_items[$name];
         if (is_array($item) || is_null($item)) {
             $item = $this->createItem($name, $item ?: []);
@@ -101,10 +97,5 @@ trait ManagerTrait
         }
 
         return $this->_items;
-    }
-
-    public function getIterator()
-    {
-        return new \ArrayIterator($this->_items);
     }
 }
