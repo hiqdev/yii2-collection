@@ -54,6 +54,11 @@ trait ManagerTrait
         return Yii::createObject($this->getItemConfig($name, $config));
     }
 
+    public function getRaw($name)
+    {
+        return $this->_items[$name];
+    }
+
     /**
      * Returns item by name. Instantiates it before.
      *
@@ -76,11 +81,6 @@ trait ManagerTrait
         return $item;
     }
 
-    public function getRaw($name)
-    {
-        return $this->_items[$name];
-    }
-
     public function hasObject($name)
     {
         return is_object($this->_items[$name]);
@@ -101,5 +101,10 @@ trait ManagerTrait
         }
 
         return $this->_items;
+    }
+
+    public function getIterator()
+    {
+        return new \ArrayIterator($this->_items);
     }
 }

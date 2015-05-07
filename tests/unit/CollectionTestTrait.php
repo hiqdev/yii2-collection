@@ -40,6 +40,7 @@ trait CollectionTestTrait
         'last'     => [],
     ];
 
+    protected $newkey   = 'newkey';
     protected $existing = 'existing';
     protected $value    = 'the new value';
 
@@ -72,8 +73,10 @@ trait CollectionTestTrait
 
     public function testSetNew()
     {
-        $this->sample->set('new', 'the new one');
-        $this->assertTrue($this->sample->has('new'));
+        $this->sample->set($this->newkey, $this->value);
+        $this->assertTrue($this->sample->has($this->newkey));
+        $this->assertEquals($this->value, $this->sample->get($this->newkey));
+        $this->assertEquals($this->value, $this->sample->getItem($this->newkey));
     }
 
     public function testSetExisting()
@@ -81,6 +84,7 @@ trait CollectionTestTrait
         $this->sample->set($this->existing, $this->value);
         $this->assertEquals(array_keys($this->items), $this->sample->keys());
         $this->assertEquals($this->value, $this->sample->get($this->existing));
+        $this->assertEquals($this->value, $this->sample->getItem($this->existing));
     }
 
     public function testSetFirst()
@@ -152,6 +156,6 @@ trait CollectionTestTrait
         foreach ($this->sample as $k => $v) {
             $keys[] = $k;
         }
-        $this->assertEquals($keys, array_keys($this->items));
+        $this->assertEquals(array_keys($this->items), $keys);
     }
 }
