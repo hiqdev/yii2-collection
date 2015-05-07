@@ -10,7 +10,6 @@
  */
 namespace hiqdev\collection;
 
-use ArrayIterator;
 use Yii;
 
 /**
