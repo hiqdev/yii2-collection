@@ -25,6 +25,9 @@ trait ManagerTrait
      */
     protected $_itemClass;
 
+    protected $_tellName   = false;
+    protected $_tellParent = false;
+
     public function setItemClass($class)
     {
         $this->_itemClass = $class;
@@ -37,9 +40,15 @@ trait ManagerTrait
 
     public function getItemConfig($name = null, array $config = [])
     {
-        return array_merge([
-            'class' => $this->getItemClass($name, $config) ?: get_called_class(),
-        ], (array) $config);
+        $defaults = ['class' => $this->getItemClass($name, $config) ?: get_called_class()];
+        if ($this->_tellName) {
+            $defaults['name'] = $name;
+        }
+        if ($this->_tellParent) {
+            $defaults['parent'] = $this;
+        }
+
+        return array_merge($defaults, (array) $config);
     }
 
     /**
