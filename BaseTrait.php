@@ -128,6 +128,8 @@ trait BaseTrait
 
     /**
      * Delete an item.
+     *
+     * @param $name
      */
     public function unsetItem($name)
     {
@@ -140,7 +142,8 @@ trait BaseTrait
      * Straight put items.
      *
      * @param array $items list of items
-     * @param mixed $where @see setItem
+     *
+     * @see setItem
      */
     public function putItems(array $items)
     {
@@ -153,7 +156,9 @@ trait BaseTrait
      * Set them all!
      *
      * @param array $items list of items
-     * @param mixed $where @see setItem
+     * @param mixed $where
+     *
+     * @see setItem()
      */
     public function setItems($items, $where = '')
     {
@@ -178,12 +183,14 @@ trait BaseTrait
 
     /**
      * Adds array of items to specified place.
-     * Doesn't touch those items that already exists.
+     * Does not touch those items that already exists.
      *
      * @param array        $items array of items.
-     * @param string|array $where where to add @see set()
+     * @param string|array $where where to add. See [[setItem()]]
      *
      * @return $this for chaining
+     *
+     * @see setItem()
      */
     public function addItems(array $items, $where = '')
     {
@@ -193,7 +200,7 @@ trait BaseTrait
             }
         }
         if ($items) {
-            $this->setItems($items);
+            $this->setItems($items, $where);
         }
 
         return $this;
@@ -218,7 +225,9 @@ trait BaseTrait
      *
      * @param int|string   $name
      * @param mixed        $value the element value
-     * @param string|array $where where to put, @see set()
+     * @param string|array $where where to put, see [[setItem()]]
+     *
+     * @see setItem()
      */
     public function set($name, $value, $where = '')
     {
@@ -230,13 +239,15 @@ trait BaseTrait
     }
 
     /**
-     * Adds an item. Doesn't touch if already exists.
+     * Adds an item. Does not touch if already exists.
      *
      * @param int|string   $name  item name.
      * @param array        $value item value.
-     * @param string|array $where where to put, @see set()
+     * @param string|array $where where to put, see [[setItem()]]
      *
      * @return $this for chaining
+     *
+     * @see setItem()
      */
     public function add($name, $value = null, $where = '')
     {
@@ -260,6 +271,8 @@ trait BaseTrait
 
     /**
      * Delete an item.
+     *
+     * @param $name
      */
     public function delete($name)
     {
@@ -290,6 +303,11 @@ trait BaseTrait
         return array_combine($fields, $fields);
     }
 
+    /**
+     * Sets multiple items.
+     *
+     * @param array $values
+     */
     public function mset(array $values)
     {
         foreach ($values as $k => $v) {
@@ -301,9 +319,11 @@ trait BaseTrait
      * Internal function to prepare new list of items with given items inserted inside.
      *
      * @param array        $items array of items.
-     * @param string|array $where where to insert @see add()
+     * @param string|array $where where to insert, see [[add()]]
      *
      * @return array new items list
+     *
+     * @see add()
      */
     protected function insertInside($items, $where)
     {
@@ -333,12 +353,13 @@ trait BaseTrait
     /**
      * Internal function to prepare where list for insertInside.
      *
-     * @param array $list array to convert
+     * @param array|string $list array to convert
      *
      * @return array
      */
     protected static function convertWhere2List($list)
     {
+        $res = [];
         if (is_array($list)) {
             foreach ($list as $v) {
                 $res[$v] = 1;
@@ -354,6 +375,9 @@ trait BaseTrait
 
     /**
      * Sets one after another.
+     *
+     * @param array  $items
+     * @param string $after
      */
     public function smartSet(array $items, $after = '')
     {
@@ -365,6 +389,9 @@ trait BaseTrait
 
     /**
      * Adds one after another.
+     *
+     * @param array  $items
+     * @param string $after
      */
     public function smartAdd(array $items, $after = '')
     {
@@ -494,7 +521,7 @@ trait BaseTrait
      * Method for IteratorAggregate interface.
      * Enables foreach'ing the object.
      *
-     * @return ArrayIterator
+     * @return \ArrayIterator
      */
     public function getIterator()
     {

@@ -25,15 +25,12 @@ trait ManagerTrait
      */
     protected $_itemClass;
 
-    protected $_tellName   = false;
-    protected $_tellParent = false;
-
     public function setItemClass($class)
     {
         $this->_itemClass = $class;
     }
 
-    public function getItemClass($name = null)
+    public function getItemClass()
     {
         return $this->_itemClass ?: get_called_class();
     }
@@ -41,11 +38,12 @@ trait ManagerTrait
     public function getItemConfig($name = null, array $config = [])
     {
         $defaults = ['class' => $this->getItemClass($name, $config) ?: get_called_class()];
-        if ($this->_tellName) {
+        $class    = new \ReflectionClass($defaults['class']);
+        if ($class->implementsInterface('hiqdev\collection\ItemWithNameInterface')) {
             $defaults['name'] = $name;
         }
-        if ($this->_tellParent) {
-            $defaults['parent'] = $this;
+        if ($class->implementsInterface('hiqdev\collection\ItemWithCollectionInterface')) {
+            $defaults['collection'] = $this;
         }
 
         return array_merge($defaults, (array) $config);
@@ -57,7 +55,7 @@ trait ManagerTrait
      * @param string $name   item name.
      * @param array  $config item instance configuration.
      *
-     * @return item instance.
+     * @return Object instance.
      */
     protected function createItem($name, array $config = [])
     {

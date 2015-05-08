@@ -54,11 +54,39 @@ class ManagerTest extends \yii\codeception\TestCase
         $this->sample->delete('new');
         $this->assertFalse($this->sample->has('new'));
     }
+
+    public function testNameAndCollection()
+    {
+        $this->assertEquals($this->sample->name, null);
+        $this->assertEquals($this->sample->collection, null);
+
+        $sidebar = $this->sample->sidebar;
+        $this->assertEquals($sidebar->name, 'sidebar');
+        $this->assertEquals($sidebar->collection, $this->sample);
+    }
 }
 
-class NewManager extends \hiqdev\collection\Manager
+/**
+ * Class NewManager.
+ *
+ * @property mixed collection
+ */
+class NewManager extends \hiqdev\collection\Manager implements \hiqdev\collection\ItemWithCollectionInterface, \hiqdev\collection\ItemWithNameInterface
 {
     public $url;
     public $label;
     public $options;
+
+    public $name;
+    protected $_collection;
+
+    public function getCollection()
+    {
+        return $this->_collection;
+    }
+
+    public function setCollection($collection)
+    {
+        $this->_collection = $collection;
+    }
 }

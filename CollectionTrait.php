@@ -33,7 +33,7 @@ trait CollectionTrait
     }
 
     /**
-     * Get them alldt! as array of items!
+     * Get them all as array of items!
      *
      * @return array list of items
      */
