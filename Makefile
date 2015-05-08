@@ -31,7 +31,7 @@ fix: setpath
 	$(CBIN)/php-cs-fixer fix . --no-interaction
 
 dryfix: setpath
-	$(CBIN)/php-cs-fixer fix . -vvv  --dry-run
+	$(CBIN)/php-cs-fixer fix . -vvv --dry-run
 
 clean:
 	rm -rf vendor composer.lock tests/unit/UnitTester.php

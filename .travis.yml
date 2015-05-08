@@ -6,21 +6,21 @@ language: php
 
 php:
   - 5.4
-#  - 5.5
-#  - 5.6
-#  - 7.0
-#  - hhvm
-#  - hhvm-nightly
+  - 5.5
+  - 5.6
+  - 7.0
+  - hhvm
+  - hhvm-nightly
 
 # run build against hhvm but allow them to fail
 # http://docs.travis-ci.com/user/build-configuration/#Rows-That-are-Allowed-To-Fail
 matrix:
   fast_finish: true
-# disabled for tests
-#  allow_failures:
-#    - php: hhvm
-#    - php: hhvm-nightly
-#    - php: 7.0
+ disabled for tests
+  allow_failures:
+    - php: hhvm
+    - php: hhvm-nightly
+    - php: 7.0
 
 # faster builds on new travis setup not using sudo
 sudo: false
@@ -34,6 +34,4 @@ install:
   - make install
 
 script:
-  - make fix
-  - git diff
-
+  - make checks
