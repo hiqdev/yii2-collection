@@ -28,8 +28,10 @@ class ModelTest extends \yii\codeception\TestCase
     {
         //parent::setUp();
         $this->sample = Yii::createObject([
+
             'class' => NewModel::className(),
             'items' => $this->items,
+
         ]);
     }
 
