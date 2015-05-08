@@ -16,7 +16,6 @@ php:
 # http://docs.travis-ci.com/user/build-configuration/#Rows-That-are-Allowed-To-Fail
 matrix:
   fast_finish: true
- disabled for tests
   allow_failures:
     - php: hhvm
     - php: hhvm-nightly
