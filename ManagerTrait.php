@@ -38,16 +38,18 @@ trait ManagerTrait
 
     public function getItemConfig($name = null, array $config = [])
     {
-        $defaults = ['class' => $this->getItemClass($name, $config) ?: get_called_class()];
-        $class    = new \ReflectionClass($defaults['class']);
+        if (!isset($config['class'])) {
+            $config['class'] = $this->getItemClass($name, $config) ?: get_called_class();
+        }
+        $class = new \ReflectionClass($config['class']);
         if ($class->implementsInterface('hiqdev\collection\ItemWithNameInterface')) {
-            $defaults['name'] = $name;
+            $config['name'] = $name;
         }
         if ($class->implementsInterface('hiqdev\collection\ItemWithCollectionInterface')) {
-            $defaults['collection'] = $this;
+            $config['collection'] = $this;
         }
 
-        return array_merge($defaults, (array) $config);
+        return $config;
     }
 
     /**
