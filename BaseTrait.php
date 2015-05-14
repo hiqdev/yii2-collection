@@ -417,7 +417,7 @@ trait BaseTrait
     /**
      * This method is overridden to support accessing items like properties.
      *
-     * @param string $name component or property name
+     * @param string $name item or property name
      *
      * @return mixed item of found or the named property value
      */
