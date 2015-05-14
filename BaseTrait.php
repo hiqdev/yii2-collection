@@ -30,17 +30,6 @@ trait BaseTrait
      */
     protected $_items = [];
 
-    /**
-     * Initializes with defaults if appliable.
-     */
-    public function init()
-    {
-        parent::init();
-        if (!$this->_items && static::$_defaults) {
-            $this->_items = static::$_defaults;
-        }
-    }
-
 /// Item methods
 
     /**
@@ -51,7 +40,22 @@ trait BaseTrait
      */
     public function putItem($name, $value = null)
     {
-        $this->_items[$name] = $value;
+        if (is_null($name) || is_int($name)) {
+            $this->_items[] = $value;
+        } else {
+            $this->_items[$name] = $value;
+        }
+    }
+
+    /**
+     * Get raw item.
+     *
+     * @param string $name  item name.
+     * @return mixed item value.
+     */
+    public function rawItem($name)
+    {
+        return $this->_items[$name];
     }
 
     /**
@@ -71,12 +75,12 @@ trait BaseTrait
     {
         /// if ($where === 'last' || $this->hasItem($name)) {
         if ($where === '') {
-            $this->_items[$name] = $value;
+            $this->putItem($name, $value);
         } else {
             /// rough method: unset and then set, think of better
             $this->unsetItem($name);
             if ($where === 'last') {
-                $this->_items[$name] = $value;
+                $this->putItem($name, $value);
             } elseif ($where === 'first') {
                 $this->_items = array_merge([$name => $value], $this->_items);
             } else {
@@ -149,7 +153,7 @@ trait BaseTrait
     public function putItems(array $items)
     {
         foreach ($items as $k => $v) {
-            $this->_items[$k] = $v;
+            $this->putItem($k, $v);
         }
     }
 
@@ -196,8 +200,8 @@ trait BaseTrait
     public function addItems(array $items, $where = '')
     {
         foreach ($items as $k => $v) {
-            if ($this->hasItem($k)) {
-                unset($items[$k]);
+            if (!is_int($k) && $this->hasItem($k)) {
+                $this->unsetItem($k);
             }
         }
         if ($items) {
@@ -328,25 +332,31 @@ trait BaseTrait
      */
     protected function insertInside($items, $where)
     {
-        $before = static::convertWhere2List($where['before']);
-        $after  = static::convertWhere2List($where['after']);
+        $before = $this->prepareWhere($where['before']);
+        $after  = $this->prepareWhere($where['after']);
         $new    = [];
         $found  = false;
+        /// TODO think of realizing it better
         foreach ($this->_items as $k => $v) {
-            if (!$found && $before[$k]) {
+            if (!$found && $k === $before) {
                 foreach ($items as $i => $c) {
                     $new[$i] = $c;
                 }
                 $found = true;
-            };
+            }
             $new[$k] = $v;
-            if (!$found && $after[$k]) {
+            if (!$found && $k === $after) {
                 foreach ($items as $i => $c) {
                     $new[$i] = $c;
                 }
                 $found = true;
-            };
-        };
+            }
+        }
+        if (!$found) {
+            foreach ($items as $i => $c) {
+                $new[$i] = $c;
+            }
+        }
 
         return $new;
     }
@@ -358,18 +368,18 @@ trait BaseTrait
      *
      * @return array
      */
-    protected static function convertWhere2List($list)
+    protected function prepareWhere($list)
     {
-        $res = [];
-        if (is_array($list)) {
-            foreach ($list as $v) {
-                $res[$v] = 1;
+        if (!is_array($list)) {
+            $list = [$list];
+        }
+        foreach ($list as $v) {
+            if ($this->has($v)) {
+                return $v;
             }
-        } else {
-            $res[$list] = 1;
         }
 
-        return $res;
+        return null;
     }
 
 /// smart methods

@@ -65,11 +65,6 @@ trait ManagerTrait
         return Yii::createObject($this->getItemConfig($name, $config));
     }
 
-    public function getRaw($name)
-    {
-        return $this->_items[$name];
-    }
-
     /**
      * Returns item by name. Instantiates it before.
      *
