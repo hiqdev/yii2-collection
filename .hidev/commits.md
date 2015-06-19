@@ -1,7 +1,10 @@
 hiqdev/yii2-collection commits history
 --------------------------------------
 
-## Under development
+## 0.0.3 Under development
+
+
+## 0.0.2 June 19, 2015
 
 - php-cs-fixed
     - dd1bfd9 2015-06-19 rephp-cs-fixed (sol@hiqdev.com)

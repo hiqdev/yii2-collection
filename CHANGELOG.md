@@ -1,7 +1,10 @@
 hiqdev/yii2-collection changelog
 --------------------------------
 
-## Under development
+## 0.0.3 Under development
+
+
+## 0.0.2 June 19, 2015
 
 - php-cs-fixed
 - hideved
