@@ -1,0 +1,15 @@
+parent:
+    github:         hiqdev/hidev-config
+
+package:
+    name:           yii2-collection
+    namespace:      hiqdev\collection
+    label:          CollectionLibrary
+    title:          Collection Library for Yii2
+    type:           yii2-extension
+    keywords:       collection, extension, yii2
+    year:           2015
+
+composer.json:
+    require:
+        php:        ">=5.4.0"

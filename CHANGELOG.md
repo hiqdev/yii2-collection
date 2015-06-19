@@ -1,11 +1,11 @@
 hiqdev/yii2-collection changelog
 --------------------------------
 
-### Current TODO
+## Under development
 
-- do first release
 
-### 0.1.0 under development
+## 0.0.1 May 12, 2015
 
-- inited
+
+## Development started April 22, 2015
 
