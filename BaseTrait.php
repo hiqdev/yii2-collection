@@ -53,9 +53,9 @@ trait BaseTrait
      * @param string $name  item name.
      * @return mixed item value.
      */
-    public function rawItem($name)
+    public function rawItem($name, $default = null)
     {
-        return $this->_items[$name];
+        return isset($this->_items[$name]) ? $this->_items[$name] : $default;
     }
 
     /**
