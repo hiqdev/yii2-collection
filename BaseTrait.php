@@ -1,12 +1,12 @@
 <?php
 
 /*
- * HiQDev Collection for Yii 2.
+ * Collection Library for Yii2
  *
- * @link      http://hiqdev.com/yii2-collection
+ * @link      https://github.com/hiqdev/yii2-collection
  * @package   yii2-collection
- * @license   BSD 3-clause
- * @copyright Copyright (c) 2015 HiQDev
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015, HiQDev (https://hiqdev.com/)
  */
 
 namespace hiqdev\collection;
@@ -50,7 +50,8 @@ trait BaseTrait
     /**
      * Get raw item.
      *
-     * @param string $name  item name.
+     * @param string $name item name.
+     *
      * @return mixed item value.
      */
     public function rawItem($name, $default = null)
@@ -379,7 +380,7 @@ trait BaseTrait
             }
         }
 
-        return null;
+        return;
     }
 
 /// smart methods

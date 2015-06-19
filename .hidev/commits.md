@@ -3,12 +3,15 @@ hiqdev/yii2-collection commits history
 
 ## Under development
 
+- hideved
+    - 01c3a1d 2015-06-19 hideved (sol@hiqdev.com)
     - 2b1d237 2015-06-19 * BaseTrait::rawItem + default value (sol@hiqdev.com)
     - 05be8f5 2015-05-17 - require yii2 (sol@hiqdev.com)
     - bfba8ba 2015-05-14 improved putItem and used everywhere renamed getRaw -> rawItem improved insertInside, renamed convertWhere2List -> prepareWhere (sol@hiqdev.com)
 
 ## 0.0.1 May 12, 2015
 
+- lot of playing with Travis, php-cs-fixer, codeception
     - 2c95c95 2015-05-12 fixed getItemConfig, reflectioning proper class (sol@hiqdev.com)
     - 91a363c 2015-05-08 Travis fixed. Again... (d.naumenko.a@gmail.com)
     - 52e19b7 2015-05-08 Travis fixed (d.naumenko.a@gmail.com)
@@ -82,6 +85,7 @@ hiqdev/yii2-collection commits history
     - c7a62e3 2015-04-23 try (sol@hiqdev.com)
     - e725a84 2015-04-22 NOT TESTED (sol@hiqdev.com)
     - fa16f83 2015-04-22 doc (sol@hiqdev.com)
+- inited
     - 4ca7b69 2015-04-22 inited (sol@hiqdev.com)
 
 ## Development started April 22, 2015
