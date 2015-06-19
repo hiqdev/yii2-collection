@@ -7,6 +7,7 @@ hiqdev/yii2-collection commits history
     - dd1bfd9 2015-06-19 rephp-cs-fixed (sol@hiqdev.com)
 - hideved
     - 01c3a1d 2015-06-19 hideved (sol@hiqdev.com)
+- small fixes
     - 2b1d237 2015-06-19 * BaseTrait::rawItem + default value (sol@hiqdev.com)
     - 05be8f5 2015-05-17 - require yii2 (sol@hiqdev.com)
     - bfba8ba 2015-05-14 improved putItem and used everywhere renamed getRaw -> rawItem improved insertInside, renamed convertWhere2List -> prepareWhere (sol@hiqdev.com)

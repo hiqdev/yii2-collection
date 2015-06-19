@@ -5,6 +5,7 @@ hiqdev/yii2-collection changelog
 
 - php-cs-fixed
 - hideved
+- small fixes
 
 ## 0.0.1 May 12, 2015
 
