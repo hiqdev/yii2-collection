@@ -3,6 +3,8 @@ hiqdev/yii2-collection commits history
 
 ## Under development
 
+- php-cs-fixed
+    - dd1bfd9 2015-06-19 rephp-cs-fixed (sol@hiqdev.com)
 - hideved
     - 01c3a1d 2015-06-19 hideved (sol@hiqdev.com)
     - 2b1d237 2015-06-19 * BaseTrait::rawItem + default value (sol@hiqdev.com)
@@ -32,6 +34,7 @@ hiqdev/yii2-collection commits history
     - f497af8 2015-05-04 * creating item * getRaw to return really raw (sol@hiqdev.com)
     - 1073da2 2015-05-03 php-cs-fixed (sol@hiqdev.com)
     - d95804f 2015-05-03 php-cs-fixed (sol@hiqdev.com)
+- basics done
     - c6ce463 2015-05-03 * Object, Component: + IteratorAggregate interface (sol@hiqdev.com)
     - e735de5 2015-05-03 redone set functions with where argument, + getIterator() for IteratorAggregate (sol@hiqdev.com)
     - 3d654c7 2015-05-03 + more tests (sol@hiqdev.com)
