@@ -11,5 +11,6 @@ package:
     year:           2015
 
 composer.json:
-    require:
-        php:        ">=5.4.0"
+    require-dev:
+        yiisoft/yii2:               "~2.0"
+        yiisoft/yii2-codeception:   "~2.0"
