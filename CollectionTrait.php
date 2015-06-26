@@ -11,8 +11,6 @@
 
 namespace hiqdev\collection;
 
-use Yii;
-
 /**
  * Collection Trait.
  * Array inside of object.

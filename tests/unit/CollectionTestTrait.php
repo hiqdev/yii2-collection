@@ -11,8 +11,6 @@
 
 namespace hiqdev\collection\tests\unit;
 
-use Yii;
-
 /**
  * Collection Trait test suite.
  */

@@ -11,8 +11,6 @@
 
 namespace hiqdev\collection;
 
-use Yii;
-
 /**
  * Base Trait.
  */
