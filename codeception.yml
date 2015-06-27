@@ -1,11 +1,11 @@
+coverage:
+    enable: true
 actor: Tester
 paths:
     tests: tests
     log: tests/_output
     data: tests/_data
     helpers: tests/_support
-coverage:
-    enable: true
 settings:
     bootstrap: _bootstrap.php
     colors: true
