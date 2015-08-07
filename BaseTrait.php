@@ -200,7 +200,7 @@ trait BaseTrait
     {
         foreach ($items as $k => $v) {
             if (!is_int($k) && $this->hasItem($k)) {
-                $this->unsetItem($k);
+                unset($items[$k]);
             }
         }
         if ($items) {
@@ -536,5 +536,14 @@ trait BaseTrait
     public function getIterator()
     {
         return new \ArrayIterator($this->_items);
+    }
+
+    /**
+     * Returns number of items in the collection
+     *
+     * @return int
+     */
+    public function count() {
+        return count($this->_items);
     }
 }
