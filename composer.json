@@ -14,14 +14,14 @@
         "source": "https://github.com/hiqdev/yii2-collection",
         "issues": "https://github.com/hiqdev/yii2-collection/issues",
         "wiki": "https://github.com/hiqdev/yii2-collection/wiki",
-        "forum": "https://forum.hiqdev.com/"
+        "forum": "http://forum.hiqdev.com/"
     },
     "authors": [
         {
             "name": "Andrii Vasyliev",
             "role": "Project lead",
             "email": "sol@hiqdev.com",
-            "homepage": "https://hipanel.com/"
+            "homepage": "http://hipanel.com/"
         },
         {
             "name": "Dmitry Naumenko",
@@ -33,22 +33,22 @@
             "name": "Andrey Klochok",
             "role": "Lead frontend developer",
             "email": "tafid@hiqdev.com",
-            "homepage": "https://hiqdev.com/"
+            "homepage": "http://hiqdev.com/"
         },
         {
             "name": "Yuriy Myronchuk",
             "role": "QA Lead",
             "email": "bladeroot@hiqdev.com",
-            "homepage": "https://hiqdev.com/"
+            "homepage": "http://hiqdev.com/"
         }
     ],
+    "require-dev": {
+        "yiisoft/yii2": "~2.0",
+        "yiisoft/yii2-codeception": "~2.0"
+    },
     "autoload": {
         "psr-4": {
             "hiqdev\\collection\\": ""
         }
-    },
-    "require-dev": {
-        "yiisoft/yii2": "~2.0",
-        "yiisoft/yii2-codeception": "~2.0"
     }
 }
