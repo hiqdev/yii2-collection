@@ -286,7 +286,7 @@ trait BaseTrait
     /**
      * Get keys.
      *
-     * @return $this for chaining
+     * @return array for chaining
      */
     public function keys()
     {
