@@ -235,7 +235,7 @@ trait BaseTrait
      */
     public function set($name, $value, $where = '')
     {
-        if ($name && $this->canSetProperty($name)) {
+        if (($name && $this->canSetProperty($name)) || strpos($name, 'on ') === 0 || strpos($name, 'as ') === 0) {
             parent::__set($name, $value);
         } else {
             $this->setItem($name, $value, $where);
