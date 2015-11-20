@@ -21,5 +21,5 @@ use yii\base\Arrayable;
  */
 class Object extends \yii\base\Object implements ArrayAccess, IteratorAggregate, Arrayable
 {
-    use CollectionTrait;
+    use ObjectTrait;
 }

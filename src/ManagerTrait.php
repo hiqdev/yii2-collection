@@ -15,11 +15,11 @@ use Yii;
 
 /**
  * Manager Trait.
- * Like a collection but instantiates all it's items when getting.
+ * Like basic collection but instantiates items when getting.
  */
 trait ManagerTrait
 {
-    use BaseTrait;
+    use ObjectTrait;
 
     /**
      * @var string default class to create item objects

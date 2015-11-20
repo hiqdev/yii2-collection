@@ -42,7 +42,8 @@
             "homepage": "http://hiqdev.com/"
         }
     ],
-    "require-dev": {
+    "require": {
+        "hiqdev/php-collection": "*@dev",
         "yiisoft/yii2": "~2.0"
     },
     "autoload": {

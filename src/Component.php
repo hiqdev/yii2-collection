@@ -16,5 +16,5 @@ namespace hiqdev\yii2\collection;
  */
 class Component extends \yii\base\Component implements \ArrayAccess, \IteratorAggregate, \yii\base\Arrayable
 {
-    use CollectionTrait;
+    use ObjectTrait;
 }
