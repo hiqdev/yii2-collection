@@ -16,7 +16,7 @@ use Yii;
 /**
  * Model test suite.
  */
-class ModelTest extends \yii\codeception\TestCase
+class ModelTest extends \PHPUnit_Framework_TestCase
 {
     use CollectionTestTrait;
 
@@ -43,6 +43,6 @@ class ModelTest extends \yii\codeception\TestCase
     }
 }
 
-class NewModel extends \hiqdev\collection\Model
+class NewModel extends \hiqdev\yii2\collection\Model
 {
 }

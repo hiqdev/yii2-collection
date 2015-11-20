@@ -16,7 +16,7 @@ use Yii;
 /**
  * Manager test suite.
  */
-class ManagerTest extends \yii\codeception\TestCase
+class ManagerTest extends \PHPUnit_Framework_TestCase
 {
     use CollectionTestTrait;
 
@@ -72,7 +72,7 @@ class ManagerTest extends \yii\codeception\TestCase
  *
  * @property mixed collection
  */
-class NewManager extends \hiqdev\collection\Manager implements \hiqdev\collection\ItemWithCollectionInterface, \hiqdev\collection\ItemWithNameInterface
+class NewManager extends \hiqdev\yii2\collection\Manager implements \hiqdev\yii2\collection\ItemWithCollectionInterface, \hiqdev\yii2\collection\ItemWithNameInterface
 {
     public $url;
     public $label;

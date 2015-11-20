@@ -9,7 +9,7 @@
  * @copyright Copyright (c) 2015, HiQDev (https://hiqdev.com/)
  */
 
-namespace hiqdev\collection;
+namespace hiqdev\yii2\collection;
 
 /**
  * ItemWithNameInterface is the interface that should be implemented by item classes who support storing of

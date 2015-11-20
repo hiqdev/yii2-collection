@@ -16,7 +16,7 @@ use Yii;
 /**
  * Component test suite.
  */
-class ComponentTest extends \yii\codeception\TestCase
+class ComponentTest extends \PHPUnit_Framework_TestCase
 {
     use CollectionTestTrait;
 
@@ -41,6 +41,6 @@ class ComponentTest extends \yii\codeception\TestCase
     }
 }
 
-class NewComponent extends \hiqdev\collection\Component
+class NewComponent extends \hiqdev\yii2\collection\Component
 {
 }

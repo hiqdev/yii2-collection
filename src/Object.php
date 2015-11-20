@@ -9,7 +9,7 @@
  * @copyright Copyright (c) 2015, HiQDev (https://hiqdev.com/)
  */
 
-namespace hiqdev\collection;
+namespace hiqdev\yii2\collection;
 
 use ArrayAccess;
 use IteratorAggregate;

@@ -16,7 +16,7 @@ use Yii;
 /**
  * Manager test suite.
  */
-class ManagerTraitTest extends \yii\codeception\TestCase
+class ManagerTraitTest extends \PHPUnit_Framework_TestCase
 {
     use CollectionTestTrait;
 
@@ -63,5 +63,5 @@ class NewManagerTrait extends \yii\base\Component implements \ArrayAccess, \Iter
     public $label;
     public $options;
 
-    use \hiqdev\collection\ManagerTrait;
+    use \hiqdev\yii2\collection\ManagerTrait;
 }

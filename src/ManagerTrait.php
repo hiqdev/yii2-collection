@@ -9,7 +9,7 @@
  * @copyright Copyright (c) 2015, HiQDev (https://hiqdev.com/)
  */
 
-namespace hiqdev\collection;
+namespace hiqdev\yii2\collection;
 
 use Yii;
 
@@ -42,10 +42,10 @@ trait ManagerTrait
             $config['class'] = $this->getItemClass($name, $config) ?: get_called_class();
         }
         $class = new \ReflectionClass($config['class']);
-        if ($class->implementsInterface('hiqdev\collection\ItemWithNameInterface')) {
+        if ($class->implementsInterface('hiqdev\yii2\collection\ItemWithNameInterface')) {
             $config['name'] = $name;
         }
-        if ($class->implementsInterface('hiqdev\collection\ItemWithCollectionInterface')) {
+        if ($class->implementsInterface('hiqdev\yii2\collection\ItemWithCollectionInterface')) {
             $config['collection'] = $this;
         }
 
