@@ -3,6 +3,10 @@ hiqdev/yii2-collection commits history
 
 ## 0.0.3 Under development
 
+- Changed: redone `php-collection`
+    - 24c1433 2015-11-20 redone with `php-collection` (sol@hiqdev.com)
+    - 44a6c30 2015-11-20 redoing tests to phpunit (sol@hiqdev.com)
+    - 975c37d 2015-11-20 fixed namespace (sol@hiqdev.com)
     - 7ea0de7 2015-11-20 fixed namespace (sol@hiqdev.com)
     - 8c44704 2015-11-20 moved to src (sol@hiqdev.com)
     - 1d5aba0 2015-11-05 BaseTrait::keys() - fixed returning type in PHPDoc (d.naumenko.a@gmail.com)
