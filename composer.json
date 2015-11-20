@@ -1,7 +1,7 @@
 {
     "name": "hiqdev/yii2-collection",
     "type": "yii2-extension",
-    "description": "Collection Library for Yii2",
+    "description": "Collection library for Yii2",
     "keywords": [
         "collection",
         "extension",
@@ -48,6 +48,7 @@
     },
     "autoload": {
         "psr-4": {
+            "hiqdev\\yii2\\collection\\": "src",
             "hiqdev\\collection\\": ""
         }
     }

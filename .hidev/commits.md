@@ -3,6 +3,7 @@ hiqdev/yii2-collection commits history
 
 ## 0.0.3 Under development
 
+    - 1d5aba0 2015-11-05 BaseTrait::keys() - fixed returning type in PHPDoc (d.naumenko.a@gmail.com)
     - 1e39467 2015-08-07 `BaseTrait` - added `count()` method, FIXED `addItems()` method (???) (d.naumenko.a@gmail.com)
     - a3e1ef7 2015-06-26 php-cs-fixed (sol@hiqdev.com)
     - 0644c1d 2015-06-26 fixed requirements (sol@hiqdev.com)
