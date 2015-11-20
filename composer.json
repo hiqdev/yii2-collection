@@ -43,13 +43,11 @@
         }
     ],
     "require-dev": {
-        "yiisoft/yii2": "~2.0",
-        "yiisoft/yii2-codeception": "~2.0"
+        "yiisoft/yii2": "~2.0"
     },
     "autoload": {
         "psr-4": {
-            "hiqdev\\yii2\\collection\\": "src",
-            "hiqdev\\collection\\": ""
+            "hiqdev\\yii2\\collection\\": "src"
         }
     }
 }
