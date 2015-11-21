@@ -16,7 +16,7 @@ use yii\base\ArrayableTrait;
 
 /**
  * ObjectTrait.
- * Intended to use for yii\base\Object descendants.
+ * Intended to be used for yii\base\Object descendants.
  * Uses canSet/GetPropperty and magic functions to provide compatible getter/setter mechanisms.
  */
 trait ObjectTrait {
