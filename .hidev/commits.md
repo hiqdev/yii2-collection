@@ -4,6 +4,12 @@ hiqdev/yii2-collection commits history
 ## 0.0.3 Under development
 
 - Changed: redone `php-collection`
+    - d88c236 2015-11-20 redone with `php-collection` (sol@hiqdev.com)
+    - 111555d 2015-11-20 redoing tests to phpunit (sol@hiqdev.com)
+    - cc46c70 2015-11-20 fixed namespace (sol@hiqdev.com)
+    - 4ea2125 2015-11-20 fixed namespace (sol@hiqdev.com)
+    - d834c00 2015-11-20 moved to src (sol@hiqdev.com)
+    - 906c4c5 2015-11-20 Fixed setting triggers and behaviors with `on ` and `as ` items (d.naumenko.a@gmail.com)
     - 24c1433 2015-11-20 redone with `php-collection` (sol@hiqdev.com)
     - 44a6c30 2015-11-20 redoing tests to phpunit (sol@hiqdev.com)
     - 975c37d 2015-11-20 fixed namespace (sol@hiqdev.com)
