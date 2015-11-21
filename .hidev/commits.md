@@ -4,6 +4,7 @@ hiqdev/yii2-collection commits history
 ## 0.0.3 Under development
 
 - Changed: redone `php-collection`
+    - ccfceb7 2015-11-21 fixed back codeception tests (sol@hiqdev.com)
     - d88c236 2015-11-20 redone with `php-collection` (sol@hiqdev.com)
     - 111555d 2015-11-20 redoing tests to phpunit (sol@hiqdev.com)
     - cc46c70 2015-11-20 fixed namespace (sol@hiqdev.com)
