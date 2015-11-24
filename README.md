@@ -5,6 +5,7 @@ Yii2 Collection
 
 [![Latest Stable Version](https://poser.pugx.org/hiqdev/yii2-collection/v/stable)](//packagist.org/packages/hiqdev/yii2-collection)
 [![Total Downloads](https://poser.pugx.org/hiqdev/yii2-collection/downloads)](//packagist.org/packages/hiqdev/yii2-collection)
+[![Build Status](https://img.shields.io/travis/hiqdev/yii2-collection.svg)](http://travis-ci.org/hiqdev/yii2-collection)
 [![Dependency Status](https://www.versioneye.com/php/hiqdev:yii2-collection/dev-master/badge.svg)](https://www.versioneye.com/php/hiqdev:yii2-collection/dev-master)
 
 ## Installation

@@ -3,6 +3,7 @@ hiqdev/yii2-collection commits history
 
 ## Under development
 
+    - 34a43e3 2015-11-24 php-cs-fixed (sol@hiqdev.com)
 
 ## 0.0.3 2015-11-24
 
