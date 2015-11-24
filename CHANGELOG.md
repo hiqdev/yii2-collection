@@ -1,9 +1,12 @@
 hiqdev/yii2-collection changelog
 --------------------------------
 
-## 0.0.3 Under development
+## Under development
 
-- Changed: redone `php-collection`
+
+## 0.0.3 2015-11-24
+
+- Changed: redone with `php-collection`
 
 ## 0.0.2 June 19, 2015
 

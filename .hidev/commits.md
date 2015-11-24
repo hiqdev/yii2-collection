@@ -1,9 +1,14 @@
 hiqdev/yii2-collection commits history
 --------------------------------------
 
-## 0.0.3 Under development
+## Under development
 
-- Changed: redone `php-collection`
+
+## 0.0.3 2015-11-24
+
+- Changed: redone with `php-collection`
+    - 7a55e73 2015-11-23 ObjectTrait - Fixed setting triggers and behaviors with `on ` and `as ` items (d.naumenko.a@gmail.com)
+    - 9af7d3a 2015-11-23 Tests - changed namespace (d.naumenko.a@gmail.com)
     - ccfceb7 2015-11-21 fixed back codeception tests (sol@hiqdev.com)
     - d88c236 2015-11-20 redone with `php-collection` (sol@hiqdev.com)
     - 111555d 2015-11-20 redoing tests to phpunit (sol@hiqdev.com)
