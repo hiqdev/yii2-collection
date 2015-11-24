@@ -1,12 +1,12 @@
 <?php
 
 /*
- * Collection Library for Yii2
+ * Collection library for Yii2
  *
  * @link      https://github.com/hiqdev/yii2-collection
  * @package   yii2-collection
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2015, HiQDev (https://hiqdev.com/)
+ * @copyright Copyright (c) 2015, HiQDev (http://hiqdev.com/)
  */
 
 namespace hiqdev\yii2\collection;
@@ -19,7 +19,8 @@ use yii\base\ArrayableTrait;
  * Intended to be used for yii\base\Object descendants.
  * Uses canSet/GetPropperty and magic functions to provide compatible getter/setter mechanisms.
  */
-trait ObjectTrait {
+trait ObjectTrait
+{
     use ArrayableTrait;
     use BaseTrait {
         BaseTrait::fields insteadof ArrayableTrait;
@@ -154,5 +155,4 @@ trait ObjectTrait {
             $this->unsetItem($name);
         }
     }
-
 }
