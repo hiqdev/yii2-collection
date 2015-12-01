@@ -58,7 +58,7 @@ trait ManagerTrait
      * @param string $name   item name.
      * @param array  $config item instance configuration.
      *
-     * @return Object instance.
+     * @return object instance.
      */
     protected function createItem($name, array $config = [])
     {
