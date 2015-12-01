@@ -3,6 +3,9 @@ hiqdev/yii2-collection changelog
 
 ## Under development
 
+
+## 0.0.4 2015-12-01
+
 - Added Travis CI
 
 ## 0.0.3 2015-11-24

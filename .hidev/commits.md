@@ -3,6 +3,9 @@ hiqdev/yii2-collection commits history
 
 ## Under development
 
+
+## 0.0.4 2015-12-01
+
 - Added Travis CI
     - 038644c 2015-11-24 added Travis CI (sol@hiqdev.com)
     - 34a43e3 2015-11-24 php-cs-fixed (sol@hiqdev.com)
