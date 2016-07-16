@@ -29,7 +29,7 @@ class ManagerTest extends \PHPUnit_Framework_TestCase
     {
         //parent::setUp();
         $this->sample = Yii::createObject([
-            'class' => NewManager::className(),
+            'class' => NewManager::class,
             'items' => $this->items,
         ]);
     }

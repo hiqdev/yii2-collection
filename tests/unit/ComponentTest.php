@@ -29,7 +29,7 @@ class ComponentTest extends \PHPUnit_Framework_TestCase
     {
         //parent::setUp();
         $this->sample = Yii::createObject([
-            'class' => NewComponent::className(),
+            'class' => NewComponent::class,
             'items' => $this->items,
         ]);
     }

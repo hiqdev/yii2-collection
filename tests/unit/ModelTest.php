@@ -30,7 +30,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
         //parent::setUp();
         $this->sample = Yii::createObject([
 
-            'class' => NewModel::className(),
+            'class' => NewModel::class,
             'items' => $this->items,
 
         ]);

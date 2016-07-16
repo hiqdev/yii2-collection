@@ -29,7 +29,7 @@ class ManagerTraitTest extends \PHPUnit_Framework_TestCase
     {
         //parent::setUp();
         $this->sample = Yii::createObject([
-            'class' => NewManagerTrait::className(),
+            'class' => NewManagerTrait::class,
             'items' => $this->items,
         ]);
     }

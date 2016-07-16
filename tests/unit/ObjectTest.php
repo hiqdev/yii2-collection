@@ -29,7 +29,7 @@ class ObjectTest extends \PHPUnit_Framework_TestCase
     {
         //parent::setUp();
         $this->sample = Yii::createObject([
-            'class' => NewObject::className(),
+            'class' => NewObject::class,
             'items' => $this->items,
         ]);
     }
