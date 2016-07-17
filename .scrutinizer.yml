@@ -1,6 +1,9 @@
-build:
-    dependencies:
-        before:
-            - sudo composer self-update && composer --version
-            - composer global require "fxp/composer-asset-plugin:1.0.0"
-
+checks:
+    php:
+        code_rating: true
+        duplication: true
+tools:
+    php_code_coverage:
+        enabled: true
+    external_code_coverage:
+        timeout: 600
