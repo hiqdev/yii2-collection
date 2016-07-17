@@ -6,7 +6,7 @@
  * @link      https://github.com/hiqdev/yii2-collection
  * @package   yii2-collection
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2015, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
  */
 
 /// ensure we get report on all possible php errors
