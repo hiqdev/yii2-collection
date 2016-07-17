@@ -54,5 +54,11 @@
         "psr-4": {
             "hiqdev\\yii2\\collection\\": "src"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
 }
