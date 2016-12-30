@@ -67,13 +67,15 @@ trait ManagerTrait
 
     /**
      * Returns item by name. Instantiates it before.
-     *
      * @param string $name item name.
-     *
+     * @param mixed $default default value.
      * @return object item instance.
      */
-    public function getItem($name)
+    public function getItem($name, $default = null)
     {
+        if (empty($this->_items[$name])) {
+            $this->_items[$name] = $default;
+        }
         $item = &$this->_items[$name];
         if (is_array($item) || is_null($item)) {
             $item = $this->createItem($name, $item ?: []);
