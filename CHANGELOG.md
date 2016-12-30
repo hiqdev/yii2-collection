@@ -1,24 +1,28 @@
-hiqdev/yii2-collection changelog
---------------------------------
+hiqdev/yii2-collection
+----------------------
 
-## Under development
+## [Under development]
 
+## [0.0.4] - 2015-12-01
 
-## 0.0.4 2015-12-01
+- Added Travis CI ([sol@hiqdev.com])
 
-- Added Travis CI
+## [0.0.3] - 2015-11-24
 
-## 0.0.3 2015-11-24
+- Changed: redone with `php-collection` ([d.naumenko.a@gmail.com], [sol@hiqdev.com])
 
-- Changed: redone with `php-collection`
+## [0.0.2] - 2015-06-19
 
-## 0.0.2 June 19, 2015
+- Fixed minor issues ([sol@hiqdev.com])
 
-- Fixed minor issues
+## [0.0.1] - 2015-05-12
 
-## 0.0.1 May 12, 2015
+- Added basics ([sol@hiqdev.com], [d.naumenko.a@gmail.com])
 
-- Added basics
+## [Development started] - 2015-04-22
 
-## Development started April 22, 2015
-
+[Under development]: https://github.com/hiqdev/yii2-collection/compare/0.0.4...HEAD
+[0.0.4]: https://github.com/hiqdev/yii2-collection/compare/0.0.3...0.0.4
+[0.0.3]: https://github.com/hiqdev/yii2-collection/compare/0.0.2...0.0.3
+[0.0.2]: https://github.com/hiqdev/yii2-collection/compare/0.0.1...0.0.2
+[0.0.1]: https://github.com/hiqdev/yii2-collection/releases/tag/0.0.1
