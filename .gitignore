@@ -1,6 +1,7 @@
 # hidev internals
 .hidev/composer.json
 .hidev/composer.lock
+.hidev/config-local.yml
 .hidev/vendor
 
 # IDE & OS files
@@ -13,19 +14,20 @@
 Thumbs.db
 nbproject
 
-# php-cs-fixer cache
-.php_cs.cache
-
 # vendor dirs
 vendor
 
 # composer lock file
 composer.lock
 
+# php-cs-fixer cache
+.php_cs.cache
+
 # phpunit generated files
 coverage.clover
 
-# PHARs
+# Binaries
+chkipper.phar
 composer.phar
 php-cs-fixer.phar
 phpunit-skelgen.phar

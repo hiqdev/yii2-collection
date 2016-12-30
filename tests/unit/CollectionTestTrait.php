@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Collection library for Yii2
  *
  * @link      https://github.com/hiqdev/yii2-collection
@@ -47,7 +46,7 @@ trait CollectionTestTrait
     {
         foreach ($this->items as $k => $v) {
             $this->assertTrue($this->sample->has($k));
-        };
+        }
     }
 
     public function testHasNot()
@@ -130,7 +129,7 @@ trait CollectionTestTrait
         foreach ([null, 'first', 'last', ['before' => 'last']] as $where) {
             $this->sample->add($this->existing, $this->value, $where);
             $this->assertEquals(array_keys($this->items), $this->sample->keys());
-        };
+        }
     }
 
     public function testAddDefault()
@@ -150,6 +149,7 @@ trait CollectionTestTrait
         $this->sample->add('new', 'value', 'last');
         $this->assertEquals(array_merge(array_keys($this->items), ['new']), $this->sample->keys());
     }
+
     public function testIteratorAggregate()
     {
         foreach ($this->sample as $k => $v) {

@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Collection library for Yii2
  *
  * @link      https://github.com/hiqdev/yii2-collection
@@ -29,10 +28,8 @@ class ModelTest extends \PHPUnit_Framework_TestCase
     {
         //parent::setUp();
         $this->sample = Yii::createObject([
-
             'class' => NewModel::class,
             'items' => $this->items,
-
         ]);
     }
 

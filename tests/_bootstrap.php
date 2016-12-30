@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Collection library for Yii2
  *
  * @link      https://github.com/hiqdev/yii2-collection

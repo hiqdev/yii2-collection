@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Collection library for Yii2
  *
  * @link      https://github.com/hiqdev/yii2-collection
@@ -54,11 +53,9 @@ trait ManagerTrait
 
     /**
      * Creates item instance from array configuration.
-     *
-     * @param string $name   item name.
-     * @param array  $config item instance configuration.
-     *
-     * @return object instance.
+     * @param string $name   item name
+     * @param array  $config item instance configuration
+     * @return object instance
      */
     protected function createItem($name, array $config = [])
     {
@@ -67,9 +64,9 @@ trait ManagerTrait
 
     /**
      * Returns item by name. Instantiates it before.
-     * @param string $name item name.
-     * @param mixed $default default value.
-     * @return object item instance.
+     * @param string $name item name
+     * @param mixed $default default value
+     * @return object item instance
      */
     public function getItem($name, $default = null)
     {
@@ -79,7 +76,7 @@ trait ManagerTrait
         $item = &$this->_items[$name];
         if (is_array($item) || is_null($item)) {
             $item = $this->createItem($name, $item ?: []);
-        };
+        }
 
         return $item;
     }
@@ -92,9 +89,7 @@ trait ManagerTrait
     /**
      * Get them all as array of items!
      * Instantiates all the items.
-     *
      * @return array list of items
-     *
      * @see get
      */
     public function getItems()

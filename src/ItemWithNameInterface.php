@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Collection library for Yii2
  *
  * @link      https://github.com/hiqdev/yii2-collection
@@ -16,7 +15,6 @@ namespace hiqdev\yii2\collection;
  * the own name in the collection, to which it belongs.
  *
  * Should have the [[name]] property, or a pair of [[getName()]] and [[setName()]] methods.
- 
  * The interface does not declare any property or method. Classes implementing this interface should
  * declare the property or the setters itself.
  *
