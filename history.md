@@ -1,6 +1,16 @@
 hiqdev/yii2-collection
 ----------------------
 
+## [0.1.1] - 2017-05-10
+
+- Added `rawItems()` in ManagerTrait
+    - [8c1af43] 2017-05-10 added `ManagerTrait::rawItems()` [@hiqsol]
+- Fixed minor issues
+    - [b29677b] 2017-05-10 csfixed [@hiqsol]
+    - [082c552] 2017-05-10 fixed tests for phpunit 6 [@hiqsol]
+    - [adcd92a] 2017-05-10 renamed `hidev.yml` <- .hidev/config.yml [@hiqsol]
+    - [d4ab846] 2017-05-08 allowed item class to not exist in ManagerTrait [@hiqsol]
+
 ## [0.1.0] - 2016-12-30
 
 - Changed `getItem()`: + default value
@@ -130,6 +140,10 @@ hiqdev/yii2-collection
 
 ## [Development started] - 2015-04-22
 
+[@tafid]: https://github.com/tafid
+[andreyklochok@gmail.com]: https://github.com/tafid
+[@BladeRoot]: https://github.com/BladeRoot
+[bladeroot@gmail.com]: https://github.com/BladeRoot
 [@hiqsol]: https://github.com/hiqsol
 [sol@hiqdev.com]: https://github.com/hiqsol
 [@SilverFire]: https://github.com/SilverFire
@@ -240,10 +254,16 @@ hiqdev/yii2-collection
 [04ecdb5]: https://github.com/hiqdev/yii2-collection/commit/04ecdb5
 [cae22fe]: https://github.com/hiqdev/yii2-collection/commit/cae22fe
 [2c436b9]: https://github.com/hiqdev/yii2-collection/commit/2c436b9
-[Under development]: https://github.com/hiqdev/yii2-collection/compare/0.0.4...HEAD
+[Under development]: https://github.com/hiqdev/yii2-collection/compare/0.1.0...HEAD
 [0.0.4]: https://github.com/hiqdev/yii2-collection/compare/0.0.3...0.0.4
 [0.0.3]: https://github.com/hiqdev/yii2-collection/compare/0.0.2...0.0.3
 [0.0.2]: https://github.com/hiqdev/yii2-collection/compare/0.0.1...0.0.2
 [0.0.1]: https://github.com/hiqdev/yii2-collection/releases/tag/0.0.1
 [cfffdf8]: https://github.com/hiqdev/yii2-collection/commit/cfffdf8
 [0.1.0]: https://github.com/hiqdev/yii2-collection/compare/0.0.4...0.1.0
+[b29677b]: https://github.com/hiqdev/yii2-collection/commit/b29677b
+[082c552]: https://github.com/hiqdev/yii2-collection/commit/082c552
+[adcd92a]: https://github.com/hiqdev/yii2-collection/commit/adcd92a
+[8c1af43]: https://github.com/hiqdev/yii2-collection/commit/8c1af43
+[d4ab846]: https://github.com/hiqdev/yii2-collection/commit/d4ab846
+[0.1.1]: https://github.com/hiqdev/yii2-collection/compare/0.1.0...0.1.1
