@@ -102,4 +102,13 @@ trait ManagerTrait
 
         return $this->_items;
     }
+
+    /**
+     * Get raw items - uninstantiated.
+     * @return array
+     */
+    public function rawItems()
+    {
+        return $this->_items;
+    }
 }
