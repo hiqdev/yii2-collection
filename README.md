@@ -1,5 +1,4 @@
-Yii2 Collection
-===============
+# Yii2 Collection
 
 **Collection library for Yii2**
 
@@ -9,6 +8,10 @@ Yii2 Collection
 [![Scrutinizer Code Coverage](https://img.shields.io/scrutinizer/coverage/g/hiqdev/yii2-collection.svg)](https://scrutinizer-ci.com/g/hiqdev/yii2-collection/)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/hiqdev/yii2-collection.svg)](https://scrutinizer-ci.com/g/hiqdev/yii2-collection/)
 [![Dependency Status](https://www.versioneye.com/php/hiqdev:yii2-collection/dev-master/badge.svg)](https://www.versioneye.com/php/hiqdev:yii2-collection/dev-master)
+
+Yii2 adapter for [php-collection] library.
+
+[php-collection]: https://github.com/hiqdev/php-collection
 
 ## Installation
 
@@ -33,4 +36,4 @@ to the require section of your composer.json.
 This project is released under the terms of the BSD-3-Clause [license](LICENSE).
 Read more [here](http://choosealicense.com/licenses/bsd-3-clause).
 
-Copyright © 2015-2016, HiQDev (http://hiqdev.com/)
+Copyright © 2015-2017, HiQDev (http://hiqdev.com/)

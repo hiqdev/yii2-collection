@@ -4,4 +4,7 @@ package:
     title:          Collection library for Yii2
     headline:       Yii2 Collection
     keywords:       collection, extension, yii2
-    namespace:      hiqdev\yii2\collection
+    description:    |
+        Yii2 adapter for [php-collection] library.
+
+        [php-collection]: https://github.com/hiqdev/php-collection
