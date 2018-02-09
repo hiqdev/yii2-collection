@@ -40,6 +40,6 @@ class ObjectTest extends \PHPUnit\Framework\TestCase
     }
 }
 
-class NewObject extends \hiqdev\yii2\collection\Object
+class NewObject extends \hiqdev\yii2\collection\BaseObject
 {
 }

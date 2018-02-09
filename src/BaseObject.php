@@ -18,7 +18,7 @@ use yii\base\Arrayable;
  * Collection Object.
  * Simply holds items.
  */
-class Object extends \yii\base\BaseObject implements ArrayAccess, IteratorAggregate, Arrayable
+class BaseObject extends \yii\base\BaseObject implements ArrayAccess, IteratorAggregate, Arrayable
 {
     use ObjectTrait;
 }
