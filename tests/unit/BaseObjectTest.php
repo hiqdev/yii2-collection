@@ -13,9 +13,9 @@ namespace hiqdev\yii2\collection\tests\unit;
 use Yii;
 
 /**
- * Object test suite.
+ * BaseObject test suite.
  */
-class ObjectTest extends \PHPUnit\Framework\TestCase
+class BaseObjectTest extends \PHPUnit\Framework\TestCase
 {
     use CollectionTestTrait;
 

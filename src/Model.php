@@ -11,7 +11,7 @@
 namespace hiqdev\yii2\collection;
 
 /**
- * Collection Object.
+ * Collection Model.
  * Simply holds items.
  */
 class Model extends \yii\base\Model
