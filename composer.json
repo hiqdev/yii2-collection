@@ -44,7 +44,7 @@
     ],
     "require": {
         "hiqdev/php-collection": "*",
-        "yiisoft/yii2": "^2.0 || ^3.0"
+        "yiisoft/yii-core": "^3.0@dev"
     },
     "require-dev": {
         "hiqdev/hidev-php": "<2.0",
@@ -60,5 +60,10 @@
             "type": "composer",
             "url": "https://asset-packagist.org"
         }
-    ]
+    ],
+    "extra": {
+        "branch-alias": {
+            "v2.x-dev": "2.0.x-dev"
+        }
+    }
 }
